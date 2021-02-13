@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios"
 import './App.css';
 
@@ -8,9 +8,10 @@ function App() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
-  const [loginStatus, setLoginStatus] = useState("");
 
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  Axios.defaults.withCredentials = true;
   const register = () => {
     Axios.post("http://localhost:3001/register", {
       username: usernameReg,
@@ -25,11 +26,30 @@ function App() {
       username: username,
       password: password,
     }).then((response) => {
-      if(response.data.message){
-        setLoginStatus(response.data.message)
+      if (!response.data.auth) {
+        setLoginStatus(false)
       } else {
-        setLoginStatus(response.data[0].username)
+        localStorage.setItem("token", response.data.token)
+        setLoginStatus(true)
       }
+    });
+  };
+
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3001/login").then((response) => {
+  //     if (response.data.loggedIn == true) {
+  //       setLoginStatus(response.data.user[0].username)
+  //     }
+  //   })
+  // }, [])
+
+  const userAuthenticated = () => {
+    Axios.get("http://localhost:3001/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    }).then((response) => {
+      console.log(response);
     });
   };
 
@@ -37,41 +57,45 @@ function App() {
     <div className="App">
       <div className="registration">
         <h1>Registration</h1>
-          <label>Username: </label>
-          <input 
-            type="text"
-            onChange={(e) => {
-              setUsernameReg(e.target.value);
+        <label>Username: </label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setUsernameReg(e.target.value);
           }}
-           />
-          <label>Password: </label>
+        />
+        <label>Password: </label>
         <input
           type="password"
           onChange={(e) => {
             setPasswordReg(e.target.value);
           }}
         />
-        <button onClick= {register}>Register</button>
+        <button onClick={register}>Register</button>
       </div>
       <div className="login">
         <h1>Login</h1>
-        <input 
+        <input
           type="text"
           placeholder="Username..."
           onChange={(e) => {
             setUsername(e.target.value);
           }}
         />
-        <input 
+        <input
           type="password"
           placeholder="password..."
           onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+            setPassword(e.target.value);
+          }}
         />
-        <button onClick= {login}>Log In</button>
+        <button onClick={login}>Log In</button>
       </div>
-      <h1>{loginStatus}</h1>
+      <h1>
+        {loginStatus && (
+          <button onClick={userAuthenticated}> Check if Authenticated</button>
+        )}
+      </h1>
     </div>
   );
 }
