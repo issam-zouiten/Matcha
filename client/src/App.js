@@ -3,7 +3,10 @@ import Axios from "axios"
 import './App.css';
 
 function App() {
+  const [LastnameReg, setLastnameReg] = useState("");
+  const [FirstnameReg, setFirstnameReg] = useState("");
   const [usernameReg, setUsernameReg] = useState("");
+  const [EmailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
 
   const [username, setUsername] = useState("");
@@ -14,7 +17,10 @@ function App() {
   Axios.defaults.withCredentials = true;
   const register = () => {
     Axios.post("http://localhost:3001/register", {
+      lastname: LastnameReg,
+      firstname: FirstnameReg,
       username: usernameReg,
+      email: EmailReg,
       password: passwordReg,
     }).then((response) => {
       console.log(response);
@@ -57,11 +63,32 @@ function App() {
     <div className="App">
       <div className="registration">
         <h1>Registration</h1>
+        <label>Lastname: </label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setLastnameReg(e.target.value);
+          }}
+        />
+        <label>Firstname: </label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setFirstnameReg(e.target.value);
+          }}
+        />
         <label>Username: </label>
         <input
           type="text"
           onChange={(e) => {
             setUsernameReg(e.target.value);
+          }}
+        />
+        <label>Email: </label>
+        <input
+          type="text"
+          onChange={(e) => {
+            setEmailReg(e.target.value);
           }}
         />
         <label>Password: </label>
