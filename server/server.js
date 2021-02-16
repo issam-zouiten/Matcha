@@ -35,7 +35,7 @@ const app = require('./src/app');
 //     },
 // }))
 
-// const con = mysql.createConnection({
+// const con = mysql.createConnction({
 //     host: "192.168.99.100",
 //     port: "3306",
 //     user: "root",

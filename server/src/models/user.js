@@ -1,10 +1,10 @@
 const con = require('../Config/db_conn');
 const queries = require("../Config/queries");
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
-const DELETE = queries.DELETE;
+// const DELETE = queries.DELETE;
 
 module.exports = {
     Register: function (lastname, firstname, username, email, password) {
@@ -37,6 +37,36 @@ module.exports = {
                     reject(err);
                 else
                     resolve(JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    UpdatvfToken: function (email, token) {
+        return new Promise((resolve, reject) => {
+            con.query(UPDATE.UpToken, [token, email], (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+    verif: function (email) {
+        return new Promise((resolve, reject) => {
+            conn.query(UPDATE.verif, email, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+    non_verif: function (email) {
+        return new Promise((resolve, reject) => {
+            conn.query(UPDATE.non_verif, email, (err, res) => {
+                if (err)
+                    reject(err);
+                else
+                    resolve(res);
             });
         })
     },
