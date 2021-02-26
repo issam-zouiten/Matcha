@@ -1,6 +1,5 @@
 const con = require('../Config/db_conn');
 const queries = require("../Config/queries");
-// var jwt = require('jsonwebtoken');
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
@@ -14,7 +13,7 @@ module.exports = {
             }
         });
     },
-    getUser: function (type, value) {
+    getUser:  function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
                 if (err)
@@ -52,7 +51,7 @@ module.exports = {
     },
     verif: function (email) {
         return new Promise((resolve, reject) => {
-            conn.query(UPDATE.verif, email, (err, res) => {
+            con.query(UPDATE.verif, email, (err, res) => {
                 if (err)
                     reject(err);
                 else
@@ -62,7 +61,7 @@ module.exports = {
     },
     non_verif: function (email) {
         return new Promise((resolve, reject) => {
-            conn.query(UPDATE.non_verif, email, (err, res) => {
+            con.query(UPDATE.non_verif, email, (err, res) => {
                 if (err)
                     reject(err);
                 else

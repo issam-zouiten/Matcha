@@ -12,8 +12,6 @@ import {PersistGate} from "redux-persist/lib/integration/react";
 const  store = configureStore();
 const persistor = persistStore(store);
 ReactDOM.render(
-
-
 <Provider store = {store}>
     <PersistGate loading={null} persistor={persistor}>
         <ConnectedRouter history={history}>
@@ -21,5 +19,4 @@ ReactDOM.render(
         </ConnectedRouter>
     </PersistGate>
 </Provider>
-
 , document.getElementById('root'));

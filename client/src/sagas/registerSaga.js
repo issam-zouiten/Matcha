@@ -7,7 +7,6 @@ import axios from 'axios'
 const inscription =
   function *inscription ({data}) {
     try {
-    
       const response = yield axios.post('http://localhost:3001/register', data)
       if(response.data.isValid){
         yield put(inscriptionUserSuccess(data));

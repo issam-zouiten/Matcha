@@ -31,32 +31,32 @@ const user = require('../models/user');
 // })
 
 Login = async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
+    const { username, password } = req.body;
     let dataUser = await user.getUser('GetUserByUsername', username);
     if (dataUser) {
         bcrypt.compare(password, dataUser.password)
             .then((response) => {
                 if (response) {
-                    const id = result[0].id;
-                    const token = jwt.sign({ id }, "jwtSecret", {
-                        expiresIn: 300,
-                    })
-                    req.session.user = result;
+                    if (dataUser.confirmed === 1) {
+                        user.update('UpdateOnline', [dataUser.id])
+                        dataUser.isOnline = 1;
+                        delete dataUser.vfToken;
+                        delete dataUser.password;
+                        res.send({ isValid: true, user: dataUser });
+                    }
+                    else
+                        res.send({ isValid: false, errorField: 'Please confirm your e-mail' });
+                }
+                else {
+                    res.send({isValid : false, errorField : 'wrong user name password combination!'});
 
-                    res.json({ auth: true, token: token, result: result });
-                } else {
-                    res.json({
-                        auth: false,
-                        message: "wrong user name password combination!"
-                    });
                 }
             })
             .catch(err => console.log(err))
     }
     else
-        res.json({ auth: false, message: "No user exists!" });
+        res.send({isValid: false, errorField : "No user exists!"});
+
 }
 
 module.exports = Login;
