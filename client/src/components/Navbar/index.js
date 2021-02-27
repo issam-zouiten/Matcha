@@ -128,18 +128,12 @@ const Navbar=() => {
                             alt="User Image"
                             />
                          </Core.IconButton>
-                        {/* <Core.Button color="primary">Logout</Core.Button> */}
                 </Core.Toolbar>
             </Core.AppBar>
             <Core.Drawer
                 className={classes.drawer}
-                // container={container}
-                // variant="presistent"
                 anchor="left"
-                // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                // open={mobileOpen}
                 open={sidebar}
-                // onClose={handleDrawerToggle}
                 classes={{
                 paper: classes.drawerPaper,
                 }}

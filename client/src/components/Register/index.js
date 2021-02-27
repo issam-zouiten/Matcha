@@ -45,7 +45,6 @@ const useStyles = makeStyles(theme => ({
   buttongrid: {
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor:'#99004d',
     margin: theme.spacing(1),
   },
   placeholder: {
@@ -57,6 +56,12 @@ const useStyles = makeStyles(theme => ({
   },
   container: {
     textAlign: 'center',
+  },
+  linkee: {
+    textDecoration: 'none', color: '#11888e',
+    "&:hover": {
+      color: '#09015F'
+    }
   }
 }));
 
@@ -139,7 +144,7 @@ const Register = (props) => {
         </form>
         <Grid container justify="flex-end" style={{justifyContent: 'center'}}>
             <Grid item>
-              <Link to="/login" style={{textDecoration: 'none', color:'#11888e'}}>
+              <Link to="/login" className={classes.linkee}>
                 Already have an account? Sign in
               </Link>
             </Grid>

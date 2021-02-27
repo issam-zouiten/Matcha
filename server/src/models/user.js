@@ -29,6 +29,16 @@ module.exports = {
             });
         })
     },
+    update: function (type, value){
+        return new Promise ((resolve, reject) => {
+            con.query(UPDATE[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
     select: function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {

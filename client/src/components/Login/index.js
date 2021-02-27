@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-
 import { Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -20,10 +19,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: '50%',
-    marginLeft: "9%",
-    padding: '0%',
-    marginTop: "10px",
+    marginTop: "30px",
+    paddingTop: '5%',
     paddingBottom: '7%'
   },
   form: {
@@ -38,11 +35,10 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(17),
   },
   submit: {
-    margin: "0px",
-    marginBottom: "15px",
+    margin: theme.spacing(0, 0, 1),
     backgroundColor: '#11888e',
     justifyContent: 'center',
-    width: "85%"
+    width: "90%"
   },
   buttongrid: {
     alignItems: 'center',

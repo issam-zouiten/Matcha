@@ -37,9 +37,9 @@ Login = async (req, res) => {
         bcrypt.compare(password, dataUser.password)
             .then((response) => {
                 if (response) {
-                    if (dataUser.confirmed === 1) {
+                    if (dataUser.verif === 1) {
                         user.update('UpdateOnline', [dataUser.id])
-                        dataUser.isOnline = 1;
+                        dataUser.Online = 1;
                         delete dataUser.vfToken;
                         delete dataUser.password;
                         res.send({ isValid: true, user: dataUser });

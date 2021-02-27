@@ -14,7 +14,6 @@ const Routes = () => {
                 <Route exact path="/register" component={RegisterUser} />
                 <Route exact path="/login" component={loginUser}/>
                 <Route exact path="/Browser" component={Browser}/>
-                <Route exact path="/login" component={loginUser}/>
                 <Route exact path="/confirme/:token" component={confirme}/>
                 <Route exact path="/" component={loginUser}/>
                 <Route exact path="" component={NotFoundPage}/>
