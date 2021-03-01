@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import textField from '../commun/TextField'
 import logo from '../../image/logo.png';
-
 const useStyles = makeStyles(theme => ({
   paper: {
     display: 'flex',
@@ -19,15 +18,14 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginTop: "30px",
+    height: '50%',
     paddingTop: '5%',
+    marginTop: "30px",
     paddingBottom: '7%'
   },
   form: {
     width: '80%',
     marginTop: theme.spacing(3),
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   avatar: {
     margin: theme.spacing(0),
@@ -40,27 +38,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     width: "90%"
   },
-  buttongrid: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: theme.spacing(1),
-  },
-  inputholder: {
-    height: "10px",
-  },
-  placeholder: {
-    width: "80%",
-    padding: "0px",
-  },
 
   login: {
     color: '#07689f',
   },
 
-  container: {
-    width: "80%",
-    textAlign: 'center',
-  },
   margin: {
     height: "30px",
   },
@@ -126,5 +108,4 @@ const Login = (props) => {
     </Container>
   );
 }
-
 export default Login;

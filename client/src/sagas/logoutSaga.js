@@ -25,6 +25,6 @@ export const logoutRequest =
         }
     };
   
-export default function *() {
+export default function *logou() {
     yield takeLatest(LOGOUT_USER, logoutRequest);
 }

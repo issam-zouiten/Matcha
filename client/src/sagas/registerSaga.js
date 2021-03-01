@@ -50,7 +50,7 @@ function *emailConfirm ({token}) {
     }
 };
 
-export default function *() {
+export default function *reg() {
   yield takeLatest("INSCRIPTION_USER", inscription);
   yield takeLatest("EMAIL_CONFIRMATION", emailConfirm);
 }

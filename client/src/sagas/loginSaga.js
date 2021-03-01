@@ -1,6 +1,7 @@
 import { takeLatest, put, call, delay } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import { loginError, loginUserSuccess, loginErrorField } from "../actions/loginAction";
+import {updateUserSuccess} from '../actions/userAction'
 import { request } from './helper';
 
 const login =
@@ -18,7 +19,9 @@ const login =
       });
 
       if (response.data.isValid) {
+        const  user = response.data.user;
         yield put(loginUserSuccess());
+        yield put(updateUserSuccess(user));
         yield put(push("/Browser"));
       }
       else {
@@ -32,6 +35,6 @@ const login =
     }
   };
 
-export default function *() {
+export default function *log() {
   yield takeLatest("LOGIN_USER", login);
 }

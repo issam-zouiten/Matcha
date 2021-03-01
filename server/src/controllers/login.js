@@ -48,7 +48,7 @@ Login = async (req, res) => {
                         res.send({ isValid: false, errorField: 'Please confirm your e-mail' });
                 }
                 else {
-                    res.send({isValid : false, errorField : 'wrong user name password combination!'});
+                    res.send({isValid : false, errorField : 'password no exist!'});
 
                 }
             })

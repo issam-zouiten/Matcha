@@ -6,11 +6,12 @@ import {
   EMAIL_CONFIRMATION_SUCCESS,
   EMAIL_CONFIRMATION_ERROR,
 } from "../actions/registerAction";
+
 import {
   RESET_STATE
 } from '../actions/resetStateAction';
 
-export default function (state = '', action) {
+export default function reg(state = '', action) {
   switch (action.type) {
   case INSCRIPTION_USER:
     return {registerStatus: 'loading'};

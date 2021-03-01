@@ -3,13 +3,16 @@ import registerReducer from "./registerReducer";
 import loginReducer from "./loginReducer";
 import {combineReducers} from "redux";
 import {reducer as form} from "redux-form";
-
+import userReducer from './userReducer';
+import resetPasswordReducer from "./resetPasswordReducer";
 
 
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
     "register" : registerReducer,
     "login": loginReducer,
+    "user" : userReducer,
+    "resetPassword": resetPasswordReducer,
     form
 });
 export default combinedReducer;

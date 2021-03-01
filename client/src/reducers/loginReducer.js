@@ -16,7 +16,7 @@ const DEFAULT_STATE = {
   error: null
 };
   
-export default function (state = DEFAULT_STATE, action) {
+export default function log(state = DEFAULT_STATE, action) {
     switch (action.type) {
       case LOGIN_USER:
         return{
