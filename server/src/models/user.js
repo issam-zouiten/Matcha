@@ -79,4 +79,14 @@ module.exports = {
             });
         })
     },
+    ResetPassword : function (password, token) {
+        return new Promise ((resolve, reject) => {
+            con.query(UPDATE.ResetPassword, [password, token],(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res);
+            });
+        })
+    },
 };

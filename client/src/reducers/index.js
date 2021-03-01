@@ -4,7 +4,7 @@ import loginReducer from "./loginReducer";
 import {combineReducers} from "redux";
 import {reducer as form} from "redux-form";
 import userReducer from './userReducer';
-import resetPasswordReducer from "./resetPasswordReducer";
+import resetPasswordReducer from "./resetPReducer";
 
 
 const combinedReducer = (history)=> combineReducers({
