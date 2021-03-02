@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {Route, Switch} from 'react-router-dom';
+import { connect } from "react-redux";
+import { Route, Switch } from 'react-router-dom';
 import RegisterUser from '../containers/Register';
 import loginUser from '../containers/Login';
 import Browser from '../components/Browser';
@@ -10,22 +10,23 @@ import ResetPassword from '../containers/resetP';
 import ForgotPassword from '../containers/Forgot';
 
 
-const Routes = () => {
+const Routes = (props) => {
+    const {user} = props;
     return (
             <Switch>
-                <Route exact path="/register" component={RegisterUser} />
-                <Route exact path="/login" component={loginUser}/>
-                <Route exact path="/Browser" component={Browser}/>
-                <Route exact path="/confirme/:token" component={confirme}/>
-                <Route exact path="/resetPassword/:token"  component={ResetPassword}/>
-                <Route exact path="/forgotPassword"  component={ForgotPassword}/>
-                <Route exact path="/" component={loginUser}/>
-                <Route exact path="" component={NotFoundPage}/>
+                <Route exact path="/register" component={user === null ? RegisterUser  : Browser} />
+                <Route exact path="/login" component={user === null ? loginUser  : Browser} />
+                <Route exact path="/Browser" component={user === null ? loginUser : Browser} />
+                <Route exact path="/confirme/:token" component={user === null ? confirme  : Browser} />
+                <Route exact path="/resetPassword/:token" component={user === null ? ResetPassword  : Browser} />
+                <Route exact path="/forgotPassword" component={user === null ? ForgotPassword  : Browser} />
+                <Route exact path="/" component={user === null ? loginUser  : Browser} />
+                <Route exact path="" component={NotFoundPage} />
             </Switch>
     )
 }
 const mapStateToProps = (state) => (
-{
-    'user': state.user,
-});
+    {
+        'user': state.user,
+    });
 export default connect(mapStateToProps)(Routes);
