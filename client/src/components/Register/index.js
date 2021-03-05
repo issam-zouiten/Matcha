@@ -5,13 +5,14 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import { Field } from 'redux-form';
 import React from 'react';
 import renderField from '../commun/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import logo from '../../image/logo.png';
+import LoginImage from "../../image/registerpic.svg";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -20,10 +21,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginTop: "30px",
+    height: '50%',
     paddingTop: '5%',
-    paddingBottom: '7%'
-    //backgroundColor: theme.palette.secondary.main,
+    marginTop: "5%",
+    paddingBottom: '7%',
+    borderRadius: theme.spacing(3),
   },
   form: {
     width: '80%',
@@ -31,22 +33,31 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   submit: {
     margin: theme.spacing(0, 0, 1),
     backgroundColor: '#11888e',
     justifyContent: 'center',
-    width: "90%"
+    width: "90%",
+    borderRadius: theme.spacing(1),
+    textDecoration: 'none',
+    "&:hover": {
+      backgroundColor: '#07689f'
+    }
   },
+
   avatar: {
     margin: theme.spacing(0),
     width: theme.spacing(15),
     height: theme.spacing(17),
   },
+
   buttongrid: {
     alignItems: 'center',
     justifyContent: 'center',
     margin: theme.spacing(1),
   },
+
   placeholder: {
     width: "85%",
   },
@@ -54,105 +65,132 @@ const useStyles = makeStyles(theme => ({
   login: {
     color: '#07689f',
   },
+
   container: {
     textAlign: 'center',
   },
+
   linkee: {
     textDecoration: 'none', color: '#11888e',
     "&:hover": {
       color: '#09015F'
     }
-  }
+  },
+  registerpic: {
+    height: "85%",
+    width: "85%",
+    marginTop: "10%",
+
+  },
+  contPic: {
+    alignContent: "center",
+    justifyContent: "center"
+  },
+
+  gridPic: {
+    alignContent: "center",
+    justifyContent: "center"
+  },
 }));
 
 const Register = (props) => {
-  const {handleSubmit, status, err} = props;
+  const { handleSubmit, status, err } = props;
   const classes = useStyles();
   return (
-    <Container className={classes.container} component="main" maxWidth="xs">
-      <CssBaseline />
-      {status === "error" && err}
-      {status !== "loading" && 
-      <div className={classes.paper}> 
-      <Paper elevation={10} className={classes.paper}>
-        <Avatar variant="rounded" className={classes.avatar} src={logo} />
-        <Typography className={classes.login} component="h2" variant="h5">
-          Sign up
+    <>
+      <Grid container spacing={4} className={classes.contPic}>
+        <Grid item xs={2} ></Grid>
+        <Grid item xs={4} className={classes.gridPic}>
+          <img src={LoginImage} alt="Register" className={classes.registerpic} />
+        </Grid>
+        <Grid item xs={4}>
+          <Container className={classes.container} component="main" maxWidth="xs">
+            <CssBaseline />
+            {status === "error" && err}
+            {status !== "loading" &&
+              <div className={classes.paper}>
+                <Paper elevation={10} className={classes.paper}>
+                  <Avatar variant="rounded" className={classes.avatar} src={logo} />
+                  <Typography className={classes.login} component="h2" variant="h5">
+                    Sign up
         </Typography>
-        <form className={classes.form}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <Field
-                name="firstname"
-                component={renderField}
-                label="Firstname"
-                type="text"
-                rows='1'
-              />              
-              </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="lastname"
-                component={renderField}
-                label="Lastname"
-                type="text"
-                rows='1'
-              />              
-              </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="username"
-                component={renderField}
-                label="Username"
-                type="text"
-                rows='1'
+                  <form className={classes.form}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Field
+                          name="firstname"
+                          component={renderField}
+                          label="Firstname"
+                          type="text"
+                          rows='1'
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="lastname"
+                          component={renderField}
+                          label="Lastname"
+                          type="text"
+                          rows='1'
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="username"
+                          component={renderField}
+                          label="Username"
+                          type="text"
+                          rows='1'
 
-              />              
-              </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="email"
-                component={renderField}
-                label="Email"
-                type="email"
-                rows='1'
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="email"
+                          component={renderField}
+                          label="Email"
+                          type="email"
+                          rows='1'
 
-              />              
-              </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="password"
-                component={renderField}
-                label="Password"
-                type="password"
-                rows='1'
-              />              
-              </Grid>
-            <Grid item xs={12}>
-              <Field
-                name="confirmPassword"
-                component={renderField}
-                label="ConfirmPassword"
-                type="password"
-                rows='1'
-              />              
-              </Grid>
-            <Grid className={classes.buttongrid} item xs={12}>
-            <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
-            </Grid>
-          </Grid>
-        </form>
-        <Grid container justify="flex-end" style={{justifyContent: 'center'}}>
-            <Grid item>
-              <Link to="/login" className={classes.linkee}>
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-      </Paper>
-      </div>}
-      {status === "loading" && <div className={classes.paper} style={{ marginTop: "300px" }}><CircularProgress color="secondary" /></div>}
-    </Container>
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="password"
+                          component={renderField}
+                          label="Password"
+                          type="password"
+                          rows='1'
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="confirmPassword"
+                          component={renderField}
+                          label="ConfirmPassword"
+                          type="password"
+                          rows='1'
+                        />
+                      </Grid>
+                      <Grid className={classes.buttongrid} item xs={12}>
+                        <Button onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
+                      </Grid>
+                    </Grid>
+                  </form>
+                  <Grid container justify="flex-end" style={{ justifyContent: 'center' }}>
+                    <Grid item>
+                      <Link to="/login" className={classes.linkee}>
+                        Already have an account? Sign in</Link>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </div>}
+            {status === "loading" && <div className={classes.paper} style={{ marginTop: "300px" }}><CircularProgress color="secondary" /></div>}
+          </Container>
+        </Grid>
+        <Grid item xs={2} ></Grid>
+      </Grid>
+    </>
   );
 }
 

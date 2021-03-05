@@ -13,6 +13,7 @@ module.exports = {
             }
         });
     },
+
     getUser:  function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {
@@ -29,6 +30,7 @@ module.exports = {
             });
         })
     },
+
     update: function (type, value){
         return new Promise ((resolve, reject) => {
             con.query(UPDATE[type], value,(err,res) => {
@@ -39,6 +41,55 @@ module.exports = {
             });
         })
     },
+
+    updateInfo: function (gender, Sexual_orientation, date_birthday, biography, id) {
+        return new Promise ((resolve, reject) => {
+            con.query(UPDATE.UpdateInfo, [gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+
+    deleteUserTag: function (id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(DELETE.DeleteUserTags, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+
+    getTagId : function (inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GeTagId, [inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    insertUserTag: function (id, tag) {
+        return new Promise ((resolve, reject) => {
+            conn.query(INSERT.InsertUserTag, [id, tag_id], (err,res) => {
+                if(err)
+                    reject(err);
+                else
+                    resolve(res);
+            });
+        })
+    },
+
     select: function (type, value) {
         return new Promise((resolve, reject) => {
             con.query(SELECT[type], value, (err, res) => {

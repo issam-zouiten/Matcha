@@ -36,7 +36,7 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
         dispatchProps.loginAction(form);
     })
 });
-
+ 
 const connectedLoginContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Login);
 
 const LoginContainer = reduxForm({
