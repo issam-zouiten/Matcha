@@ -1,15 +1,6 @@
-import {
-    LOGIN_USER,
-    LOGIN_USER_ERROR,
-    LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR_FIELD,
-} from "../actions/loginAction";
-
+import {LOGIN_USER,LOGIN_USER_ERROR,LOGIN_USER_SUCCESS,LOGIN_USER_ERROR_FIELD,} from "../actions/loginAction";
 import { CLEAR_USER_INFORMATION } from '../actions/logoutAction'
-
-import {
-  RESET_STATE
-} from '../actions/resetStateAction';
+import {RESET_STATE} from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
   status: 'offline',

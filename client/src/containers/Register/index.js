@@ -1,5 +1,5 @@
 import Register from '../../components/Register';
-import {InscriptionAction} from '../../actions/registerAction';
+import {RegisterAction} from '../../actions/registerAction';
 import {connect} from "react-redux";
 import {reduxForm } from 'redux-form';
 
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => (
     "err": state.register.error
 });
 const mapDispatchToProps = {
-    "registerAction": InscriptionAction
+    "RegisterAction": RegisterAction
 };
 const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
     ...stateProps,

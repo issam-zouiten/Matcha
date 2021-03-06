@@ -1,7 +1,7 @@
 import {takeLatest, put,delay} from "redux-saga/effects";
 import {push} from "react-router-redux";
 import {resetState} from '../actions/resetStateAction';
-import {inscriptionError, inscriptionUserSuccess, EmailConfirmationSuccess, EmailConfirmationError} from "../actions/registerAction";
+import {RegisterError, RegisterUserSuccess, EmailConfirmationSuccess, EmailConfirmationError} from "../actions/registerAction";
 import axios from 'axios'
 
 const inscription =
@@ -9,24 +9,24 @@ const inscription =
     try {
       const response = yield axios.post('http://localhost:3001/register', data)
       if(response.data.isValid){
-        yield put(inscriptionUserSuccess(data));
+        yield put(RegisterUserSuccess(data));
         yield put(push("/login"));
       }
       else{
         if(response.data.errUsername && !response.data.errEmail){
-          yield put(inscriptionError(response.data.errUsername));
+          yield put(RegisterError(response.data.errUsername));
         }
         else if(response.data.errEmail && !response.data.errUsername){
-          yield put(inscriptionError(response.data.errEmail));
+          yield put(RegisterError(response.data.errEmail));
         }
         else
-          yield put(inscriptionError('Username and email already exist'));
+          yield put(RegisterError('Username and email already exist'));
       }
       yield delay(4000);
       yield put(resetState());
     }catch (error) {
       if (error.response) {
-        yield put(inscriptionError("error.response.statusText", "error.response.status"));
+        yield put(RegisterError("error.response.statusText", "error.response.status"));
       }
     }
   };

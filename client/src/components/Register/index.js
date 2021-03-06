@@ -76,21 +76,19 @@ const useStyles = makeStyles(theme => ({
       color: '#09015F'
     }
   },
-  registerpic: {
-    height: "85%",
-    width: "85%",
-    marginTop: "10%",
 
+  gridPic: {
+    backgroundImage: `url(${LoginImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '85%',
+    marginTop: "230px"
   },
+
   contPic: {
     alignContent: "center",
     justifyContent: "center"
-  },
+  }
 
-  gridPic: {
-    alignContent: "center",
-    justifyContent: "center"
-  },
 }));
 
 const Register = (props) => {
@@ -98,12 +96,9 @@ const Register = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Grid container spacing={4} className={classes.contPic}>
-        <Grid item xs={2} ></Grid>
-        <Grid item xs={4} className={classes.gridPic}>
-          <img src={LoginImage} alt="Register" className={classes.registerpic} />
-        </Grid>
-        <Grid item xs={4}>
+      <Grid container className={classes.contPic}>
+        <Grid item xs={false} sm={false} md={4} className={classes.gridPic}></Grid>
+        <Grid item xs={12} sm={12} md={4} >
           <Container className={classes.container} component="main" maxWidth="xs">
             <CssBaseline />
             {status === "error" && err}
@@ -188,7 +183,6 @@ const Register = (props) => {
             {status === "loading" && <div className={classes.paper} style={{ marginTop: "300px" }}><CircularProgress color="secondary" /></div>}
           </Container>
         </Grid>
-        <Grid item xs={2} ></Grid>
       </Grid>
     </>
   );

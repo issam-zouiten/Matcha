@@ -63,20 +63,17 @@ const useStyles = makeStyles(theme => ({
     }
   },
 
-  loginPic: {
-    width: "100%",
-    marginTop:"35%",
+  gridPic: {
+    backgroundImage: `url(${LoginImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '85%',
+    marginTop:"330px"
   },
-
   contPic: {
     alignContent: "center",
     justifyContent: "center"
   },
 
-  gridPic: {
-    alignContent: "center",
-    justifyContent: "center"
-  },
 }));
 
 const Login = (props) => {
@@ -84,13 +81,10 @@ const Login = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Grid container spacing={2} className={classes.contPic}>
-      <Grid item xs={2} ></Grid>
-        <Grid item xs={4} className={classes.gridPic}>
-          <img src={LoginImage} alt="Login" className={classes.loginPic} />
-        </Grid>
-        <Grid item xs={4}>
-          <Container className={classes.container} maxWidth="xs">
+      <Grid container className={classes.contPic}>
+        <Grid item xs={false} sm={false} md={4} className={classes.gridPic}></Grid>
+        <Grid item xs={12} sm={12} md={4} >
+          <Container className={classes.container} maxWidth="xs" >
             <CssBaseline />
             {registredStatus === 'success'}
             {status === "errorField" && errors}
@@ -138,8 +132,7 @@ const Login = (props) => {
             </Paper>
           </Container>
         </Grid>
-        <Grid item xs={2} >
-        </Grid>
+
       </Grid>
     </>
   );

@@ -1,7 +1,6 @@
-import {
-  INSCRIPTION_USER,
-  INSCRIPTION_USER_ERROR,
-  INSCRIPTION_USER_SUCCESS,
+import {REGISTER_USER,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR,
   EMAIL_CONFIRMATION,
   EMAIL_CONFIRMATION_SUCCESS,
   EMAIL_CONFIRMATION_ERROR,
@@ -13,11 +12,11 @@ import {
 
 export default function reg(state = '', action) {
   switch (action.type) {
-  case INSCRIPTION_USER:
+  case REGISTER_USER:
     return {registerStatus: 'loading'};
-  case INSCRIPTION_USER_SUCCESS:
+  case REGISTER_USER_SUCCESS:
     return {registerStatus: 'success'};
-  case INSCRIPTION_USER_ERROR:
+  case REGISTER_USER_ERROR:
     return {registerStatus: 'error', error: action.error};
   case EMAIL_CONFIRMATION:
     return {emailConfirmation: 'loading'};

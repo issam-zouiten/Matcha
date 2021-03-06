@@ -8,6 +8,7 @@
     "@material-ui/lab": "^4.0.0-alpha.34",
     "axios": "^0.21.1",
     "connected-react-router": "^6.5.2",
+    "google-map-react": "^2.1.9",
     "history": "^4.10.1",
     "local-storage": "^2.0.0",
     "material-table": "^1.54.2",
