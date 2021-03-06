@@ -1,13 +1,33 @@
-import React from 'react';
-// import { makeStyles ,useTheme} from '@material-ui/core/styles';
-// import * as Core from '@material-ui/core';
-// import * as Icons from '@material-ui/icons';
+import React, { Component } from 'react';
+import Localisation from '../../components/completeProfile/localisation';
+import {connect} from "react-redux";
+import {getLoc, addLocationSuccess} from '../../actions/addInfoAction';
 
-// const useStyles = makeStyles(theme => ({}))
-const Localisation = () =>{
-    // const classes = useStyles();
-    return(
-        <h1>Localisation</h1>
-    )
+class LocalisationContainer extends Component{
+    componentDidMount(){
+        this.props.getLoc();
+    }
+    render(){
+        const userLocation = {lat: this.props.user.lat, lng: this.props.user.long}
+        const setLocation = ({lat, lng}) => {
+            const marker = true;
+            this.props.addLocationSuccess({marker, lat, lng});
+        }
+        if(!this.props.user.lat)
+            return null;
+        return (
+            <Localisation isMarker={this.props.user.marker} setLocation={setLocation} userL={userLocation}/>
+        )
+    }
 }
-export default Localisation;
+
+const mapStateToProps = (state) => (
+{
+    "user": state.user,
+});
+const mapDispatchToProps = {
+    "getLoc": getLoc,
+    "addLocationSuccess": addLocationSuccess,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocalisationContainer);

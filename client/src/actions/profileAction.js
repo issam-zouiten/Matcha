@@ -1,7 +1,5 @@
 export const EDIT_INFO = "EDIT_INFO";
-
 export const EDIT_INFO_SUCCESS = "EDIT_INFO_SUCCESS";
-
 export const EDIT_INFO_ERROR = "EDIT_INFO_ERROR";
 
 export const editInfo = (data) => ({

@@ -113,9 +113,6 @@ const Infos = () => {
               />
             </Core.Grid>
             <Core.Grid item xs={12}></Core.Grid>
-            <Core.Grid item container justify='center' xs={1}>
-                <Core.Button className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Done</Core.Button>
-              </Core.Grid>
           </Core.Grid>
         </form>
       </div>
