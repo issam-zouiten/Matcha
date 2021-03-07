@@ -66,9 +66,22 @@ module.exports = {
         })
     },
 
-    getTagId : function (inter) {
+    getTags: function () {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GeTagId, [inter], (err,res) => {
+            con.query(SELECT.GetTags,(err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    getTagId : function (tag) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GeTagId, [tag], (err,res) => {
                 if(err)
                     reject(err);
                 else{

@@ -3,10 +3,11 @@ import React from 'react';
 // import * as Core from '@material-ui/core';
 // import * as Icons from '@material-ui/icons';
 // const useStyles = makeStyles(theme => ({}))
-const Photos = () =>{
+const Photos = (props) =>{
     // const classes = useStyles();
+    console.log(props);
     return(
-        <h1>Photos</h1>
+        <h1>loool</h1>
     )
 }
 export default Photos;

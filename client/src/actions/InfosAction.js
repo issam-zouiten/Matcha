@@ -7,27 +7,27 @@ export const GET_STEP_3_LOCATION = "GET_STEP_3_LOCATION";
 export const STEP_3_LOCATION = "STEP_3_LOCATION"
 export const STEP_3_LOCATION_SUCCESS = "STEP_3_LOCATION_SUCCESS";
 
-export const get_Tags= () => ({
+export const getTags= () => ({
   "type": GET_TAGS
 });
 
-export const get_TagsSuccess = (options) => ({
+export const getTagsSuccess = (options) => ({
     "type": GET_TAGS_SUCCESS,
     options
 });
 
-export const step1_info = (data, id) => ({
+export const step1info = (data, id) => ({
   "type": STEP_1_INFO,
   "data": data,
   "id": id,
 });
 
-export const step1_infoSuccess = (info) => ({
+export const step1infoSuccess = (info) => ({
   "type": STEP_1_INFO_SUCCESS,
   "info": info
 });
 
-export const step1_infoError = (error) => ({             
+export const step1infoError = (error) => ({             
   "type": STEP_1_INFO_ERROR,
   error
 });

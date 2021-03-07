@@ -34,8 +34,10 @@ const useStyles = makeStyles((theme) => ({
 //         />
 //   )
 
-const Infos = () => {
+const Infos = (props) => {
   const classes = useStyles();
+  const { handleSubmit} = props;
+
   return (
     <>
       <div style={{ width: "100%", height: "100%" }}>
@@ -102,17 +104,19 @@ const Infos = () => {
                 <Field name='interests'/>
               </Core.Grid> */}
             <Core.Grid item xs={12}>
-            <Core.FormLabel component="legend">Bio</Core.FormLabel>
+              <Core.FormLabel component="legend">Bio</Core.FormLabel>
               <Field
-                style={{width: "15%"}}
+                style={{ width: "15%" }}
                 name="bio"
                 component={renderField}
-                type = "text"
+                type="text"
                 rows='4'
                 variant='outlined'
               />
             </Core.Grid>
-            <Core.Grid item xs={12}></Core.Grid>
+              <Core.Grid>
+                <Core.Button onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Core.Button>
+              </Core.Grid>
           </Core.Grid>
         </form>
       </div>

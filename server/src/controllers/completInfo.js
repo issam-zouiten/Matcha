@@ -1,4 +1,4 @@
-const tools = require('../tools');
+const uti = require('../util/lib');
 const user = require('../models/user');
 
 addInfo = async (req, res) => {
@@ -9,7 +9,7 @@ addInfo = async (req, res) => {
         res.send({complet_step1:false, error: 'You can not add more than 5 tags !' });
         return ;
     }
-    if(tools.date_Birthday(add_info.date_birthday) && tools.isGender(add_info.gender) && tools.isOrient(add_info.Sexual_orientation) && tools.isBio(add_info.biography) && tools.istags(add_info.tags) && check)
+    if(uti.date_Birthday(add_info.date_birthday) && uti.gender(add_info.gender) && uti.Sexual_orientation(add_info.Sexual_orientation) && uti.biography(add_info.biography) && check)
     {
         user.deleteUserTag(add_info.id);
         user.updateInfo(add_info.gender, add_info.Sexual_orientation, add_info.date_birthday, add_info.biography, add_info.id);

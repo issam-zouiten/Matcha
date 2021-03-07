@@ -6,6 +6,7 @@ const queries = {
         GetUserByUsername: "SELECT users.* FROM users WHERE users.username = ?",
         GetUserByToken: "SELECT * FROM users WHERE vfToken = ?",
         GetTagId: "SELECT tag_id FROM tags WHERE tag = ?",
+        GetITags: "SELECT tag FROM tags",
 
     },
     INSERT: {

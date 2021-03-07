@@ -112,7 +112,8 @@ function getStepContent(step) {
 function getSteps() {
   return ["Infos", "Photos", "Localisation"];
 }
-const Profile = () => {
+const Profile = (props) => {
+  console.log(props);
   const classes = loool();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();

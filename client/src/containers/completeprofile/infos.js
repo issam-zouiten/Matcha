@@ -1,7 +1,8 @@
 import infos from '../../components/completeprofile/infos';
 import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
-import {step1_info} from '../../actions/InfosAction';
+import {step1info} from '../../actions/InfosAction';
+import Age from '../../components/commun/age';
 
 const validate = (values) => {
     const errors = {};
@@ -31,20 +32,24 @@ const validate = (values) => {
     if(values.birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.birthday))
         errors.birthday = 'Invalid date !';
 
-    
+    const age = Age(values.birthday)
+    if(age < 18)
+        errors.birthday = "Come back when you're 18 ;)"
+    if(age > 120)
+        errors.birthday = 'Invalid age !'
     return errors;
 }
 
 const mapStateToProps = (state) => (
 {
     'values' : state.form.values,
-    'selectOptions': state.addInfo.selectOptions,
+    'selectTags': state.addInfo.selectTags,
     'selectLoading': state.addInfo.selectLoading,
-    'selectError' : state.addInfo.error,
+    'Error' : state.addInfo.error,
     'user': state.user,
 });
 const mapDispatchToProps = {
-    "step1_info": step1_info,
+    "step1info": step1info,
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
@@ -52,14 +57,14 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...otherProps,
 
     "handleSubmit" : otherProps.handleSubmit((values) => {
-        dispatchProps.step1_info(values, stateProps.user.id);
+        dispatchProps.step1info(values, stateProps.user.id);
     }),
 });
 
 const connectedAddInfoContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(infos);
 
 let AddInfoContainer = reduxForm ({
-    form : "addInfo",
+    form : "step1info",
     destroyOnUnmount: true,
     validate,
 })(connectedAddInfoContainer);
@@ -68,10 +73,10 @@ AddInfoContainer = connect(
     state => ({
         initialValues: {
             gender: state.user.gender,
-            sexOrient: state.user.sexOrient,
-            birthday: state.user.birthday,
-            bio: state.user.bio,
-            interests: state.user.interests,
+            Sexual_orientation: state.user.Sexual_orientation,
+            date_birthday: state.user.date_birthday,
+            biography: state.user.biography,
+            tags: state.user.tags,
         },
     }),
 )(AddInfoContainer);

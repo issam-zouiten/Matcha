@@ -4,8 +4,9 @@ import {  Container } from '@material-ui/core';
 // import * as Core from '@material-ui/core';
 // import * as Icons from '@material-ui/icons';
 // const useStyles = makeStyles(theme => ({}))
-const Photos = () =>{
+const Photos = (props) =>{
     // const classes = useStyles();
+    console.log(props);
     return(
         <Container>
         {/* <CssBaseline />
@@ -14,6 +15,7 @@ const Photos = () =>{
                     <AddAPhotoIcon color='primary' style={{fontSize : 70}}/>
                 </IconButton>
             </Grid> */}
+            heyyy
         </Container>
     )
 }
