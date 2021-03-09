@@ -10,7 +10,7 @@ const queries = {
 
     },
     INSERT: {
-        AddUser: 'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
+        AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
 
     },
     UPDATE: {

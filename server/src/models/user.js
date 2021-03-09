@@ -6,8 +6,8 @@ const UPDATE = queries.UPDATE;
 // const DELETE = queries.DELETE;
 
 module.exports = {
-    Register: function (lastname, firstname, username, email, password) {
-        con.query(INSERT.AddUser, [lastname, firstname, username, email, password], (err, res) => {
+    Register: function (username, email, password) {
+        con.query(INSERT.AddUser, [username, email, password], (err, res) => {
             if (err) {
                 throw err;
             }
@@ -56,7 +56,7 @@ module.exports = {
 
     deleteUserTag: function (id) {
         return new Promise ((resolve, reject) => {
-            conn.query(DELETE.DeleteUserTags, [id], (err,res) => {
+            con.query(DELETE.DeleteUserTags, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
