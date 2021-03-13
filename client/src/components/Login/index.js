@@ -84,7 +84,7 @@ const Login = (props) => {
       <Grid container className={classes.contPic}>
         <Grid item xs={false} sm={false} md={4} className={classes.gridPic}></Grid>
         <Grid item xs={12} sm={12} md={4} >
-          <Container className={classes.container} maxWidth="xs" >
+          <Container maxWidth="xs" >
             <CssBaseline />
             {registredStatus === 'success'}
             {status === "errorField" && errors}
@@ -125,14 +125,12 @@ const Login = (props) => {
                 </Grid>
                 <Grid item xs={12}>
                   <Link to="/forgotPassword" className={classes.linkee}>
-                    Forgot password?
-              </Link>
+                    Forgot password?</Link>
                 </Grid>
               </Grid>
             </Paper>
           </Container>
         </Grid>
-
       </Grid>
     </>
   );

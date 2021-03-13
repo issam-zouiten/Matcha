@@ -6,8 +6,6 @@ import {reduxForm } from 'redux-form';
 const validate = (values) => {
     const errors = {};
     const requiredFields = [
-        'firstname',
-        'lastname',
         'username',
         'email',
         'password',
@@ -41,19 +39,21 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => (
 {
-    "form" : state.form,
-    "status" : state.register.registerStatus,
-    "err": state.register.error
+    form : state.form,
+    status : state.register.registerStatus,
+    err: state.register.error
 });
+
 const mapDispatchToProps = {
-    "RegisterAction": RegisterAction
+    "registerAction": RegisterAction
 };
+
 const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-    "handleSubmit" : otherProps.handleSubmit((form)=>{
-        dispatchProps.RegisterAction(form);
+    handleSubmit : otherProps.handleSubmit((form)=>{
+        dispatchProps.registerAction(form);
     })
 });
 

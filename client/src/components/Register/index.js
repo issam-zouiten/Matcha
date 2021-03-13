@@ -110,25 +110,7 @@ const Register = (props) => {
                     Sign up
         </Typography>
                   <form className={classes.form}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <Field
-                          name="firstname"
-                          component={renderField}
-                          label="Firstname"
-                          type="text"
-                          rows='1'
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Field
-                          name="lastname"
-                          component={renderField}
-                          label="Lastname"
-                          type="text"
-                          rows='1'
-                        />
-                      </Grid>
+                    <Grid container spacing={2}>                     
                       <Grid item xs={12}>
                         <Field
                           name="username"
@@ -136,7 +118,6 @@ const Register = (props) => {
                           label="Username"
                           type="text"
                           rows='1'
-
                         />
                       </Grid>
                       <Grid item xs={12}>

@@ -1,15 +1,17 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import * as Core from "@material-ui/core";
-// import * as Icons from '@material-ui/icons';
 import Infos from "../../containers//completeprofile/infos";
-import Localisation from "./localisation";
+import Localisation from "../../containers/completeprofile/localisation";
 import Photos from "../../containers/completeprofile/upload";
 import SettingsIcon from "@material-ui/icons/Settings";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import VideoLabelIcon from "@material-ui/icons/VideoLabel";
 import clsx from "clsx";
 import StepConnector from "@material-ui/core/StepConnector";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 const loool = makeStyles((theme) => ({
   button: {
@@ -25,6 +27,10 @@ const loool = makeStyles((theme) => ({
     width: "100%",
     height: "90vh",
     padding: "10px",
+  },
+  compl: {
+    color: "#11978D",
+    size: "130px"
   },
 }));
 
@@ -47,6 +53,7 @@ const useStyles = makeStyles({
   completed: {
     backgroundImage: "linear-gradient(15deg, #174F70 30%, #11878D 70%)",
   },
+
 });
 
 function ColorlibStepIcon(props) {
@@ -58,7 +65,6 @@ function ColorlibStepIcon(props) {
     2: <GroupAddIcon />,
     3: <VideoLabelIcon />,
   };
-
   return (
     <div
       className={clsx(classes.root, {
@@ -97,6 +103,8 @@ const ColorlibConnector = withStyles({
   },
 })(StepConnector);
 
+const steps = ['Infos', 'Photos', 'Localisation'];
+
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -109,69 +117,62 @@ function getStepContent(step) {
       return "Unknown step";
   }
 }
-function getSteps() {
-  return ["Infos", "Photos", "Localisation"];
-}
+
 const Profile = (props) => {
-  const {user,images} = props;
+  const { handleBack, handleNext, user, images } = props;
+  const activeStep = user.step;
   const classes = loool();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-  const handleReset = () => {
-    setActiveStep(0);
-  };
   return (
-    <div className="profileContainer">
-      <Core.Stepper
-        activeStep={activeStep}
-        orientation="vertical"
-        connector={<ColorlibConnector />}
-      >
-        {steps.map((label, index) => (
-          <Core.Step key={label}>
-            <Core.StepLabel style={{alignItems: "left", justifyContent: "left", float: "left"}} StepIconComponent={ColorlibStepIcon}>
-              {label}
-            </Core.StepLabel>
-            <Core.StepContent>
-              <Core.Grid container>
-                {/* <Core.Typography className={classes.div}> */}
-                <Core.Grid container item sm={12}>{getStepContent(index)}</Core.Grid>
-                {/* </Core.Typography> */}
+    <React.Fragment>
+      <CssBaseline />
+      {activeStep !== 'loading' &&
+        <main className="profileContainer">
+          <Core.Paper className={classes.paper}>
+            <Core.Typography component="h1" variant="h4" align="center" className={classes.compl}>
+              Complete profile
+        </Core.Typography>
+            <Core.Stepper activeStep={activeStep}
+              orientation="vertical"
+              connector={<ColorlibConnector />}
+            >
+              {steps.map(label => (
+                <Core.Step key={label}>
+                  <Core.StepLabel style={{ alignItems: "left", justifyContent: "left", float: "left" }} StepIconComponent={ColorlibStepIcon}>
+                    {label}
+                  </Core.StepLabel>
+                </Core.Step>
+              ))}
+            </Core.Stepper>
+            <React.Fragment>
+              {activeStep === steps.length ? (
+                <React.Fragment>
+                  <Core.Typography variant="h5" gutterBottom>
+                    Success
+              </Core.Typography>
+                  <Core.Typography variant="subtitle1">
+                    You completed your profile successfully.
+              </Core.Typography>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  {getStepContent(activeStep)}
+                </React.Fragment>
+              )}
+            </React.Fragment>
+            {(activeStep === 1 || activeStep === 2) &&
+              <Core.Grid container style={{ alignItems: "center", justifyContent: "center", float: "center" }} direction="row" item xs={12}>
+                <Core.Button onClick={handleBack} variant="contained" type="submit" >Back</Core.Button>
+
+                {
+                  images.isImages === true &&
+                  <Core.Button onClick={handleNext} variant="contained" type="submit" className={classes.button}>Next</Core.Button>
+                }
               </Core.Grid>
-              <div>
-                <div>
-                  <Core.Button disabled={activeStep === 0} onClick={handleBack}>
-                    Back
-                  </Core.Button>
-                  <Core.Button
-                    className={classes.button}
-                    variant="contained"
-                    // color="secondary"
-                    onClick={handleNext}
-                  >
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                  </Core.Button>
-                </div>
-              </div>
-            </Core.StepContent>
-          </Core.Step>
-        ))}
-      </Core.Stepper>
-      {activeStep === steps.length && (
-        <Core.Paper square elevation={0}>
-          <Core.Typography>Congratulations you finish</Core.Typography>
-          <Core.Button onClick={handleReset} className={classes.reset}>
-            Reset
-          </Core.Button>
-        </Core.Paper>
-      )}
-    </div>
+            }
+          </Core.Paper>
+        </main>}
+      {activeStep === "loading" && <div className={classes.loading}><CircularProgress color="secondary" /></div>}
+    </React.Fragment>
   );
 };
 export default Profile;

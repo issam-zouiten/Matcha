@@ -1,15 +1,17 @@
 import infos from '../../components/completeprofile/infos';
-import {connect} from "react-redux";
-import {reduxForm} from 'redux-form';
-import {step1info} from '../../actions/InfosAction';
+import { connect } from "react-redux";
+import { reduxForm } from 'redux-form';
+import { createTag, step1info } from '../../actions/InfosAction';
 import Age from '../../components/commun/age';
 
 const validate = (values) => {
     const errors = {};
     const requiredFields = [
+        'firstname',
+        'lastname',
         'gender',
         'Sexual_orientation',
-        'date_birthday',
+        'birthday',
         'biography',
     ];
     const requiredArr = [
@@ -26,37 +28,38 @@ const validate = (values) => {
         }
     });
 
-    if(values.biography && !/^.{1,200}$/.test(values.biography))
+    if (values.birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.birthday))
+        errors.birthday = 'Invalid date !';
+
+    if (values.biography && !/^.{1,200}$/.test(values.biography))
         errors.biography = 'maximum 200 characters';
 
-    if(values.date_birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.date_birthday))
-        errors.date_birthday = 'Invalid date !';
-
-    const age = Age(values.date_birthday)
-    if(age < 18)
-        errors.date_birthday = "Come back when you're 18 ;)"
-    if(age > 120)
-        errors.date_birthday = 'Invalid age !'
+    const age = Age(values.birthday)
+    if (age < 18)
+        errors.birthday = "Come back when you're 18"
+    if (age > 120)
+        errors.birthday = 'Invalid age !'
     return errors;
 }
 
 const mapStateToProps = (state) => (
-{
-    'values' : state.form.values,
-    'selectTags': state.addInfo.selectTags,
-    'selectLoading': state.addInfo.selectLoading,
-    'Error' : state.addInfo.error,
-    'user': state.user,
-});
+    {
+        'values': state.form.values,
+        'selectTags': state.addInfo.selectTags,
+        'selectLoading': state.addInfo.selectLoading,
+        'selectError': state.addInfo.error,
+        'user': state.user,
+    });
 const mapDispatchToProps = {
     "step1info": step1info,
+    "createTag": createTag,
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
 
-    "handleSubmit" : otherProps.handleSubmit((values) => {
+    "handleSubmit": otherProps.handleSubmit((values) => {
         dispatchProps.step1info(values, stateProps.user.id);
     }),
 
@@ -64,8 +67,8 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
 
 const connectedAddInfoContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(infos);
 
-let AddInfoContainer = reduxForm ({
-    form : "addInfo",
+let AddInfoContainer = reduxForm({
+    form: "addInfo",
     destroyOnUnmount: true,
     validate,
 })(connectedAddInfoContainer);
@@ -73,9 +76,11 @@ let AddInfoContainer = reduxForm ({
 AddInfoContainer = connect(
     state => ({
         initialValues: {
+            firstname: state.user.firstname,
+            lastname: state.user.lastname,
             gender: state.user.gender,
             Sexual_orientation: state.user.Sexual_orientation,
-            date_birthday: state.user.date_birthday,
+            birthday: state.user.birthday,
             biography: state.user.biography,
             tags: state.user.tags,
         },

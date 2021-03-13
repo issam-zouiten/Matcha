@@ -3,7 +3,7 @@ const queries = require("../Config/queries");
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
-// const DELETE = queries.DELETE;
+const DELETE = queries.DELETE;
 
 module.exports = {
     Register: function (username, email, password) {
@@ -42,13 +42,39 @@ module.exports = {
         })
     },
 
-    updateInfo: function (gender, Sexual_orientation, date_birthday, biography, id) {
+    updateInfo: function (lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id) {
         return new Promise ((resolve, reject) => {
-            con.query(UPDATE.UpdateInfo, [gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
+            con.query(UPDATE.UpdateInfo, [lastname, firstname, gender, Sexual_orientation, date_birthday, biography, id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
                     resolve(res);
+                }
+            });
+        })
+    },
+
+    TagCreatedNbr: function (id) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.TagCreatedNbr, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+
+    checkTags: function (tag) {
+        return new Promise ((resolve, reject) => {
+            con.query(SELECT.CheckTag, [tag], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
                 }
             });
         })
@@ -81,7 +107,7 @@ module.exports = {
 
     getTagId : function (tag) {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GeTagId, [tag], (err,res) => {
+            con.query(SELECT.GetTagId, [tag], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -94,11 +120,24 @@ module.exports = {
 
     insertUserTag: function (id, tag) {
         return new Promise ((resolve, reject) => {
-            conn.query(INSERT.InsertUserTag, [id, tag_id], (err,res) => {
+            con.query(INSERT.InsertUserTag, [id, tag], (err,res) => {
                 if(err)
                     reject(err);
                 else
                     resolve(res);
+            });
+        })
+    },
+
+    createTag: function (tag, id) {
+        return new Promise ((resolve, reject) => {
+            con.query(INSERT.CreateTag, [tag, id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+
+                    resolve(res);
+                }
             });
         })
     },

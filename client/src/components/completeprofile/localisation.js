@@ -1,11 +1,11 @@
 import React, { Component }  from 'react';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import Button from '@material-ui/core/Button';
-// import Typography from '@material-ui/core/Typography';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import GoogleMapReact from 'google-map-react';
-// import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
+import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
 
 // const useStyles = makeStyles(theme => ({
 //     paper: {

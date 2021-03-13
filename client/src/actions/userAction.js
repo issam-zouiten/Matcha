@@ -4,4 +4,3 @@ export const updateUserSuccess = (data) => ({
     "type":  UPDATE_USER_SUCCESS,
     data
 });
-

@@ -3,13 +3,14 @@ const bodyParser = require("body-parser");
 const rout = require('./routes/route');
 const cors = require("cors");
 const session = require("express-session");
+const upload = require('./controllers/uploadFile')
 
 
 const app = express();
 
 const cookieParser = require("cookie-parser");
 
-
+app.use(express.static('pics'));
 //database connection
 const con = require('./Config/db_conn');
 
@@ -36,6 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 app.use(rout);
+app.use(upload)
 
 //error
 app.use((req, res, next) => {

@@ -8,13 +8,13 @@ class MapsContainer extends Component{
         this.props.get_location();
     }
     render(){
-        const userLocation = {latitude: this.props.user.latitude, longitude: this.props.user.longitude}
-        const setLocation = ({latitude, longitude}) => {
+        const userLocation = {lat: this.props.user.lat, long: this.props.user.long}
+        const setLocation = ({lat, long}) => {
             const marker = true;
-            this.props.add_LocationSuccess({marker, latitude, longitude});
+            this.props.add_LocationSuccess({marker, lat, long});
         }
         const handleSubmit = () => {
-            this.props.add_Location({latitude: this.props.user.latitude, longitude: this.props.user.longitude});
+            this.props.add_Location({lat: this.props.user.latitude, long: this.props.user.long});
         }
         if(!this.props.user.latitude)
             return null;
@@ -26,11 +26,11 @@ class MapsContainer extends Component{
 
 const mapStateToProps = (state) => (
 {
-    "user": state.user,
+    user: state.user,
 });
 const mapDispatchToProps = {
-    "get_location": get_location,
-    "add_LocationSuccess": add_LocationSuccess,
+    get_location: get_location,
+    add_LocationSuccess: add_LocationSuccess,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapsContainer);
