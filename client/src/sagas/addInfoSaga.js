@@ -64,9 +64,9 @@ const get_Location =
         "method": "post"
       }, token);
       if (response.data) {
-        // console.log(response.data.localisation.long);
+        // console.log(response.data.localisation.lng);
 
-        yield put(add_LocationSuccess({ marker: response.data.marker, lat: response.data.localisation.lat, long: response.data.localisation.long }));
+        yield put(add_LocationSuccess({ marker: response.data.marker, lat: response.data.localisation.lat, lng: response.data.localisation.lng }));
       }
       else {
         yield put(step1infoError(response.data.error));
@@ -86,7 +86,7 @@ const get_Location =
       const id = yield select((state) => state.user.id);
       const token = yield select((state) => state.user.token);
       yield call(request, {
-          "url": "http://localhost:3001/addLocation",
+          "url": "http://localhost:3001/location",
           "data": {id: id, localisation},
           "method": "post"
         },token);

@@ -6,6 +6,7 @@ import Localisation from "../../containers/completeprofile/localisation";
 import Photos from "../../containers/completeprofile/upload";
 import SettingsIcon from "@material-ui/icons/Settings";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
+import BeenhereIcon from '@material-ui/icons/Beenhere';
 import VideoLabelIcon from "@material-ui/icons/VideoLabel";
 import clsx from "clsx";
 import StepConnector from "@material-ui/core/StepConnector";
@@ -144,12 +145,14 @@ const Profile = (props) => {
               ))}
             </Core.Stepper>
             <React.Fragment>
+              {console.log(activeStep)}
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Core.Typography variant="h5" gutterBottom>
-                    Success
+                    Welcome
               </Core.Typography>
                   <Core.Typography variant="subtitle1">
+                  <BeenhereIcon /><br/>
                     You completed your profile successfully.
               </Core.Typography>
                 </React.Fragment>

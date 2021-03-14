@@ -14,6 +14,9 @@ const createTag = require('../controllers/createTag');
 const updateStep = require('../controllers/updateStep');
 const getPics = require('../controllers/getPics');
 const deleteImages = require('../controllers/delPics');
+const location = require('../controllers/location');
+const setProfilePicture = require ('../controllers/setProfilePicture')
+
 
 
 router.post('/login', Login);
@@ -29,5 +32,8 @@ router.post('/updateStep',updateStep);
 router.post('/getLocation', getLocation);
 router.post('/getPics', getPics);
 router.post('/delPics',deleteImages);
+router.post('/setProfilePicture',setProfilePicture);
+router.post('/location', location);
+
 
 module.exports = router;

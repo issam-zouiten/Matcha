@@ -28,9 +28,10 @@ const queries = {
         UpdateOnline: "UPDATE users SET Online = 1 ,lastSignIn = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET Online = 0 ,lastSignIn = NOW() WHERE id = ?",
         UpdateStep: "UPDATE users SET step = ? WHERE id = ?",
-        setProfilePic: 'UPDATE pics SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
+        setProfilePic: 'UPDATE pics SET isProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic: 'UPDATE pics SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic: 'UPDATE  pics SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1',
+        UpdateLocation: "UPDATE users SET latitude = ? , longitude = ? WHERE id = ?",
 
     },
     DELETE: {

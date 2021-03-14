@@ -19,7 +19,7 @@ const StepInfo = (props) => {
     }
     const handleNext = () => {
         if (user.step === 2)
-            add_Location({ lat: user.lat, long: user.long });
+            add_Location({ lat: user.lat, lng: user.lng });
         incStep();
     }
     return (

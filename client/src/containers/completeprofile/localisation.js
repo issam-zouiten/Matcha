@@ -7,16 +7,17 @@ class MapsContainer extends Component{
     componentDidMount(){
         this.props.get_location();
     }
+
     render(){
-        const userLocation = {lat: this.props.user.lat, long: this.props.user.long}
-        const setLocation = ({lat, long}) => {
+        const userLocation = {lat: this.props.user.lat, lng: this.props.user.lng}
+        const setLocation = ({lat, lng}) => {
             const marker = true;
-            this.props.add_LocationSuccess({marker, lat, long});
+            this.props.add_LocationSuccess({marker, lat, lng});
         }
         const handleSubmit = () => {
-            this.props.add_Location({lat: this.props.user.latitude, long: this.props.user.long});
+            this.props.add_LocationSuccess({lat: this.props.user.lat, lng: this.props.user.lng});
         }
-        if(!this.props.user.latitude)
+        if(!this.props.user.lat && !this.props.user.lng)
             return null;
         return (
             <Maps isMarker={this.props.user.marker} setLocation={setLocation} userL={userLocation} handleSubmit={handleSubmit}/>
