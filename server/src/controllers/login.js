@@ -33,6 +33,7 @@ const user = require('../models/user');
 Login = async (req, res) => {
     const { username, password } = req.body;
     let dataUser = await user.getUser('GetUserByUsername', username);
+    let profilePic = await user.select('GetProfilePic', dataUser.id);
     if (dataUser) {
         bcrypt.compare(password, dataUser.password)
             .then((response) => {
@@ -42,20 +43,22 @@ Login = async (req, res) => {
                         dataUser.Online = 1;
                         delete dataUser.vfToken;
                         delete dataUser.password;
+                        if (profilePic.length > 0)
+                            dataUser.profilePic = profilePic[0].path;
                         res.send({ isValid: true, user: dataUser });
                     }
                     else
                         res.send({ isValid: false, errorField: 'Please confirm your e-mail' });
                 }
                 else {
-                    res.send({isValid : false, errorField : 'password no exist!'});
+                    res.send({ isValid: false, errorField: 'password no exist!' });
 
                 }
             })
             .catch(err => console.log(err))
     }
     else
-        res.send({isValid: false, errorField : "No user exists!"});
+        res.send({ isValid: false, errorField: "No user exists!" });
 
 }
 

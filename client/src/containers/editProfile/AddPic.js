@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import {connect} from "react-redux";
-import ViewProfile from '../../components/profile/viewprofile'
-import {getTags} from '../../actions/InfosAction'
+import Addpic from '../../containers/completeprofile/upload'
 import {getPic} from '../../actions/uploadAction';
 
-const ViewProfileContainer = (props) => {
-    const {user,images, getPic, getTags} = props;
+const AddPic = (props) => {
+    const {user, getPic} = props;
     // console.log(getTags)
     useEffect(() => {
         if(user){
             getPic(user.id);
-            getTags();
         }
-    }, [getPic, getTags, user]);
+    }, [getPic, user]);
     return (
         <div>
-            <ViewProfile user={user} images={images} tags={user.tags}/>
+            <Addpic/>
         </div>
     )
 }
@@ -27,9 +25,8 @@ const mapStateToProps = (state) => (
 });
 
 const mapDispatchToProps = {
-    "getTags" : getTags,
     "getPic": getPic,
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPic);

@@ -11,7 +11,7 @@ const validate = (values) => {
         'lastname',
         'gender',
         'Sexual_orientation',
-        'birthday',
+        'date_birthday',
         'biography',
     ];
     const requiredArr = [
@@ -28,17 +28,17 @@ const validate = (values) => {
         }
     });
 
-    if (values.birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.birthday))
-        errors.birthday = 'Invalid date !';
+    if (values.date_birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.date_birthday))
+        errors.date_birthday = 'Invalid date !';
 
     if (values.biography && !/^.{1,200}$/.test(values.biography))
         errors.biography = 'maximum 200 characters';
 
-    const age = Age(values.birthday)
+    const age = Age(values.date_birthday)
     if (age < 18)
-        errors.birthday = "Come back when you're 18"
+        errors.date_birthday = "Come back when you're 18"
     if (age > 120)
-        errors.birthday = 'Invalid age !'
+        errors.date_birthday = 'Invalid age !'
     return errors;
 }
 
@@ -80,7 +80,7 @@ AddInfoContainer = connect(
             lastname: state.user.lastname,
             gender: state.user.gender,
             Sexual_orientation: state.user.Sexual_orientation,
-            birthday: state.user.birthday,
+            date_birthday: state.user.date_birthday,
             biography: state.user.biography,
             tags: state.user.tags,
         },

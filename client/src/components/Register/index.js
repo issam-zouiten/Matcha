@@ -13,6 +13,7 @@ import renderField from '../commun/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import logo from '../../image/logo.png';
 import LoginImage from "../../image/registerpic.svg";
+import MyFlash from '../commun/flash';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -101,7 +102,7 @@ const Register = (props) => {
         <Grid item xs={12} sm={12} md={4} >
           <Container className={classes.container} component="main" maxWidth="xs">
             <CssBaseline />
-            {status === "error" && err}
+            {status === "error" && <MyFlash variant="error" msg={[err]} />}
             {status !== "loading" &&
               <div className={classes.paper}>
                 <Paper elevation={10} className={classes.paper}>
@@ -110,7 +111,7 @@ const Register = (props) => {
                     Sign up
         </Typography>
                   <form className={classes.form}>
-                    <Grid container spacing={2}>                     
+                    <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <Field
                           name="username"

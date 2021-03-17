@@ -20,7 +20,7 @@ export const RegisterError = (error) => ({
     error
 });
 
-export const email_Confirmation = (token) => ({
+export const Email_ConfirmationAc = (token) => ({
   "type": EMAIL_CONFIRMATION,
   'token': token
 });

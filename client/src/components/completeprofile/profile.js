@@ -145,7 +145,7 @@ const Profile = (props) => {
               ))}
             </Core.Stepper>
             <React.Fragment>
-              {console.log(activeStep)}
+              {/* {console.log(activeStep)} */}
               {activeStep === steps.length ? (
                 <React.Fragment>
                   <Core.Typography variant="h5" gutterBottom>

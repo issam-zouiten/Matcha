@@ -11,6 +11,10 @@ const queries = {
         TagCreatedNbr: "SELECT COUNT(tag) as n FROM tags WHERE create_tag = ? ",
         GetPics: "SELECT * FROM pics WHERE user_id = ?",
         GetProfilePic: "SELECT path FROM pics WHERE user_id = ? AND isProfilePic = 1",
+        GetUserInter: "SELECT tag FROM tags INNER JOIN useTags ON tags.tag_id = useTags.id_tag \
+                    WHERE useTags.id_user = ?",
+        CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
+        CheckEditEmail: "SELECT email from users where email = ? AND id != ?",
     },
     INSERT: {
         AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
@@ -22,9 +26,11 @@ const queries = {
     UPDATE: {
         UpToken: 'UPDATE users SET vfToken = ? WHERE email = ?',
         ResetPassword: 'UPDATE users SET password = ? WHERE vfToken = ?',
+        UpdatePassword: "UPDATE users SET password = ? WHERE id = ?",
+        notverfid: 'UPDATE users SET verif = 0 WHERE email = ?',
         verif: 'UPDATE users SET verif = 1 WHERE email = ?',
         non_verif: 'UPDATE users SET verif = 0 WHERE email = ?',
-        UpdateInfo: "UPDATE users SET lastname = ?, firstname = ?, gender = ?, Sexual_orientation = ?, date_birthday = ?, biography = ? WHERE id = ?",
+        UpdateInfo: "UPDATE users SET lastname = ?, firstname = ?, gender = ?, Sexual_orientation = ?, date_birthday = ?, age = ?, biography = ? WHERE id = ?",
         UpdateOnline: "UPDATE users SET Online = 1 ,lastSignIn = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET Online = 0 ,lastSignIn = NOW() WHERE id = ?",
         UpdateStep: "UPDATE users SET step = ? WHERE id = ?",
@@ -32,6 +38,8 @@ const queries = {
         resetProfilePic: 'UPDATE pics SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic: 'UPDATE  pics SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1',
         UpdateLocation: "UPDATE users SET latitude = ? , longitude = ? WHERE id = ?",
+        UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, date_birthday = ?, age = ?, Sexual_orientation = ?, biography = ? \
+        WHERE id = ?",
 
     },
     DELETE: {

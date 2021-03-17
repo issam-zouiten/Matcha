@@ -1,12 +1,36 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import * as Core from '@material-ui/core';
 import * as Icons from '@material-ui/icons';
 import clsx from 'clsx';
 import logo from '../../image/logo.png';
+import Menu from '@material-ui/core/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import {Link} from 'react-router-dom';
+
+const StyledMenu = withStyles({
+    paper: {
+        border: '1px solid #d3d4d5',
+    },
+})((prop) => (
+    <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+        {...prop}
+    />
+));
+
 const drawerWidth = 200;
 const useStyles = makeStyles(theme => ({
-    container: {
+    containeer: {
         display: 'relative',
         marginBottom: theme.spacing(10),
     },
@@ -45,6 +69,10 @@ const useStyles = makeStyles(theme => ({
         marginRight: '0',
     },
     logout: {
+        backgroundColor: "#174F70",
+        color: "#FFF"
+    },
+    username: {
         color: "#174F70",
         margin: "0",
         marginLeft: "0.5%",
@@ -78,108 +106,73 @@ const useStyles = makeStyles(theme => ({
 const Navbar = (props) => {
     const { user, handleLogout } = props;
     const classes = useStyles();
-    const theme = useTheme();
-    const [sidebar, setSidebar] = React.useState(false);
-    const [anchorEl, setanchorEl] = React.useState(null);
+    const [sidebar] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const handleOpenMenu = (e) => {
-        setanchorEl(e.currentTarget);
+        setAnchorEl(e.currentTarget);
     };
     const handleCloseMenu = () => {
-        setanchorEl(null);
+        setAnchorEl(null);
+    };
+    const handleCloseMenutwo = () => {
+        handleLogout();
+        setAnchorEl(null);
     };
     const sidebarmenu = [
-        { "text": "Browse", "path": "/browse", icon: <Icons.Apps /> },
+        { "text": "Browse", "path": "/Browser", icon: <Icons.Apps /> },
         { "text": "Search", "path": "/search", icon: <Icons.Search /> },
-        { "text": "Profile", "path": "/profile", icon: <Icons.Person /> },
+        { "text": "Profile", "path": "/userprofile", icon: <Icons.Person /> },
         { "text": "Activity", "path": "/activity", icon: <Icons.History /> },
         { "text": "Friends", "path": "/chat", icon: <Icons.Chat /> },
     ];
-    const showSidebar = () => {
-        user && setSidebar(!sidebar);
-    };
-    const hideSidebar = () => {
-        user && setSidebar(false);
-    }
     return (
-        <Core.Grid container item sm={12} className={classes.container} >
+        <Core.Grid container item sm={12} className={classes.containeer} >
             <Core.AppBar position="fixed" className={clsx(classes.appBar, { [classes.appBarShift]: sidebar })}>
                 <Core.Toolbar>
-                    <Core.IconButton edge="start" onClick={showSidebar} className={clsx(classes.menuButton, sidebar && classes.hide)}>
-                        <Icons.Menu className={classes.menu2} />
-                    </Core.IconButton>
+
                     <Core.Typography variant="h6" color="primary" className={classes.title}>
                         <Core.Link href="/Browser" style={{ textDecoration: 'none', color: 'inherit' }}><img className={classes.logo} alt="." src={logo} /></Core.Link>
                     </Core.Typography>
-                    {user && <Core.IconButton edge="end" color="primary" className={classes.notif}>
+                    {user && <Core.Button edge="end" color="primary" className={classes.notif}>
                         <Core.Badge>
                             <Icons.NotificationsNone />
                         </Core.Badge>
-                    </Core.IconButton>}
-                    {user && <Core.IconButton className={classes.logout} onClick={handleOpenMenu}>
-                        {user.username}
+                    </Core.Button>}
+                    {user &&
+                        <Core.Typography variant="h6" color="primary" className={classes.title}>
+                            {user.username}
+                        </Core.Typography>}
+                        {user && <Core.Button className={classes.username}  onClick={handleOpenMenu}>
                         <Core.Avatar className={classes.avatar}
                             alt="User Image"
                         />
-                    </Core.IconButton>}
+                    </Core.Button>}
                     {/* <Core.Button color="primary">Logout</Core.Button> */}
                 </Core.Toolbar>
             </Core.AppBar>
-            {user && <Core.Drawer
-                className={classes.drawer}
-                // container={container}
-                // variant="presistent"
-                anchor="left"
-                // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                // open={mobileOpen}
-                open={sidebar}
-                // onClose={handleDrawerToggle}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                }}>
-                <div className={classes.drawerHeader}>
-                    <Core.IconButton onClick={hideSidebar}>
-                        {theme.direction === 'ltr' ? <Icons.ChevronLeft color="primary" /> : <Icons.ChevronRight />}
-                    </Core.IconButton>
-                </div>
-                <Core.Divider />
-                <Core.List>
-                    {sidebarmenu.map((item) => (
-                        <Core.ListItem button key={item.text}>
-                            <Core.ListItemIcon className={classes.sidebaricon}>{item.icon}</Core.ListItemIcon>
-                            <Core.ListItemText className={classes.sidebartext} primary={item.text} />
-                        </Core.ListItem>
-                    ))}
-                </Core.List>
-                <Core.Divider />
-            </Core.Drawer>}
-            {user && <Core.Menu
-                id="menu"
-                className="navMenu"
+            {user && <StyledMenu
+                id="customized-menu"
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleCloseMenu}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}>
-                <Core.MenuItem className={classes.menuItem}>
-                    <Icons.AccountCircle />
-                    Profile
-                </Core.MenuItem>
-                <Core.Divider className="divider" light />
-                <Core.MenuItem className={classes.menuItem}>
-                    <Icons.ExitToApp />
-                    {user && <Core.Button color="primary" onClick={handleLogout}>Logout</Core.Button>}
-                </Core.MenuItem>
-            </Core.Menu>}
+                onClose={handleCloseMenu}>
+                <Core.List>
+                    {sidebarmenu.map((item) => (
+                        <Link to={item.path} style={{ textDecoration: 'none', color: '#174F70'}} key={item.text}>
+                            <Core.ListItem button>
+                                <Core.ListItemIcon>{item.icon}</Core.ListItemIcon>
+                                <Core.ListItemText primary={item.text} />
+                            </Core.ListItem>
+                        </Link>
+                    ))}
+                </Core.List>
+                <Core.ListItem button>
+                    <ListItemIcon>
+                        <Icons.ExitToApp fontSize="small" />
+                    </ListItemIcon>
+                    {user && <Core.ListItemText onClick={handleCloseMenutwo }>Logout</Core.ListItemText>}
+                </Core.ListItem>
+            </StyledMenu>}
+
         </Core.Grid>
     );
 }

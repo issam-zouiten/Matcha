@@ -19,9 +19,9 @@ addInfo = async (req, res) => {
         res.send({ complet_step1: false, error: 'You can not add more than 5 Tags !' });
         return;
     }
-    if(uti.date_Birthday(add_info.birthday) && uti.gender(add_info.gender) && uti.Sexual_orientation(add_info.Sexual_orientation) && uti.biography(add_info.biography) && verif){
+    if(uti.date_Birthday(add_info.date_birthday) && uti.gender(add_info.gender) && uti.Sexual_orientation(add_info.Sexual_orientation) && uti.biography(add_info.biography) && verif){
         user.deleteUserTag(add_info.id);
-        user.updateInfo(add_info.lastname, add_info.firstname, add_info.gender, add_info.Sexual_orientation, add_info.birthday, add_info.biography, add_info.id);
+        user.updateInfo(add_info.lastname, add_info.firstname, add_info.gender, add_info.Sexual_orientation, add_info.date_birthday, uti.age(add_info.date_birthday), add_info.biography, add_info.id);
         add_info.tags.forEach( element => {
             user.getTagId(element)
             .then(re => {

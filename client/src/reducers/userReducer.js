@@ -15,6 +15,8 @@ export default function usr(state = null, action) {
       return { ...state, step:  state.step + 1  }
     case DEC_STEP:
       return { ...state, step:  state.step - 1 }
+    // case DEC_STEP:
+    //   return { ...state, step:  state.step - 1 }
     default:
       return state;
   }

@@ -16,6 +16,7 @@ const getPics = require('../controllers/getPics');
 const deleteImages = require('../controllers/delPics');
 const location = require('../controllers/location');
 const setProfilePicture = require ('../controllers/setProfilePicture')
+const editProfile = require ('../controllers/editProfile')
 
 
 
@@ -34,6 +35,7 @@ router.post('/getPics', getPics);
 router.post('/delPics',deleteImages);
 router.post('/setProfilePicture',setProfilePicture);
 router.post('/location', location);
+router.post('/editProfile', editProfile);
 
 
 module.exports = router;

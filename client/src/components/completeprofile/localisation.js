@@ -61,7 +61,7 @@ const Localisation = (props) => {
                         />}
                         </GoogleMapReact>
                     </div>
-                    <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit"  name="submit" value="ok" >Submit</Button>
+                    <Button  onClick={handleSubmit} className={classes.submit}  variant="contained" type="submit"  name="submit" value="ok" >Get</Button>
                 </div>
         </Container>
     );

@@ -125,7 +125,7 @@ const Infos = (props) => {
             <Core.Grid className={classes.chose} item xs={12}>
               <Core.FormLabel component="legend">Birthday</Core.FormLabel>
               <Field
-                name="birthday"
+                name="date_birthday"
                 component={renderDatepicker}
               />
             </Core.Grid>

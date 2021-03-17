@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import textField from '../commun/TextField'
 import LoginImage from "../../image/loginpic.svg";
 import logo from '../../image/logo.png';
+import MyFlash from '../commun/flash'
+
 const useStyles = makeStyles(theme => ({
   paper: {
     display: 'flex',
@@ -52,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     color: '#07689f',
   },
 
-  margin: {
+  marginee: {
     height: "30px",
   },
 
@@ -79,16 +81,17 @@ const useStyles = makeStyles(theme => ({
 const Login = (props) => {
   const { handleSubmit, status, errors, registredStatus } = props;
   const classes = useStyles();
+
   return (
     <>
-      <Grid container className={classes.contPic}>
-        <Grid item xs={false} sm={false} md={4} className={classes.gridPic}></Grid>
-        <Grid item xs={12} sm={12} md={4} >
+      <Grid container className={classes.contPic} >
+        <Grid item xs={false} sm={false} md={6} className={classes.gridPic}></Grid>
+        <Grid item xs={12} sm={12} md={6} >
           <Container maxWidth="xs" >
             <CssBaseline />
-            {registredStatus === 'success'}
-            {status === "errorField" && errors}
-            <div className={classes.margin}></div>
+            {registredStatus === 'success' && <MyFlash variant="success" msg={['Registred successfully, check your e-mail']}/>}
+            {status === "errorField" && <MyFlash variant="error" msg={[errors]}/>}
+            <div className={classes.marginee}></div>
             <Paper elevation={10} className={classes.paper}>
               <Avatar variant="rounded" className={classes.avatar} src={logo} />
               <Typography className={classes.login} component="h2" variant="h5">
