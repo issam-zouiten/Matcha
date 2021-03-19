@@ -35,11 +35,11 @@
     max-width: 340px;
     width: 40%;
     height: 100%;
-    background: #2c3e50;
+    background: #11888e;
     color: #f5f5f5;
     overflow: hidden;
     position: relative;
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 20px 0px 0px 10px;
   }
   @media screen and (max-width: 900px) {
     #frame #sidepanel {
@@ -89,7 +89,7 @@
     }
   }
   #frame #sidepanel #profile .wrap img {
-    width: 50px;
+    width: 100px;
     border-radius: 50%;
     padding: 3px;
     border: 2px solid #e74c3c;
@@ -128,7 +128,7 @@
     margin-top: 23px;
     font-size: 0.8em;
     cursor: pointer;
-    color: #435f7a;
+    color: #11888e;
   }
   @media screen and (max-width: 900px) {
     #frame #sidepanel #profile .wrap i.expand-button {
@@ -144,7 +144,7 @@
     border-radius: 6px;
     z-index: 99;
     line-height: initial;
-    background: #435f7a;
+    background: #11888e;
     -moz-transition: 0.3s all ease;
     -o-transition: 0.3s all ease;
     -webkit-transition: 0.3s all ease;
@@ -262,7 +262,7 @@
   #frame #sidepanel #profile .wrap #expanded input {
     border: none;
     margin-bottom: 6px;
-    background: #32465a;
+    background: #11888e;
     border-radius: 3px;
     color: #f5f5f5;
     padding: 7px;
@@ -270,11 +270,11 @@
   }
   #frame #sidepanel #profile .wrap #expanded input:focus {
     outline: none;
-    background: #435f7a;
+    background: #11888e;
   }
   #frame #sidepanel #search {
-    border-top: 1px solid #32465a;
-    border-bottom: 1px solid #32465a;
+    border-top: 1px solid #11888e;
+    border-bottom: 1px solid #11888e;
     font-weight: 300;
   }
   @media screen and (max-width: 900px) {
@@ -291,12 +291,12 @@
     padding: 10px 0 10px 46px;
     width: calc(100% - 25px);
     border: none;
-    background: #32465a;
+    background: #11888e;
     color: #f5f5f5;
   }
   #frame #sidepanel #search input:focus {
     outline: none;
-    background: #435f7a;
+    background: #11888e;
   }
   #frame #sidepanel #search input::-webkit-input-placeholder {
     color: #f5f5f5;
@@ -330,10 +330,10 @@
   }
   #frame #sidepanel #contacts::-webkit-scrollbar {
     width: 8px;
-    background: #2c3e50;
+    background: #11888e;
   }
   #frame #sidepanel #contacts::-webkit-scrollbar-thumb {
-    background-color: #243140;
+    background-color: #11888e;
   }
   #frame #sidepanel #contacts ul li.contact {
     position: relative;
@@ -347,14 +347,14 @@
     }
   }
   #frame #sidepanel #contacts ul li.contact:hover {
-    background: #32465a;
+    background: #2f9297;
   }
   #frame #sidepanel #contacts ul li.contact.active {
-    background: #32465a;
-    border-right: 5px solid #435f7a;
+    background: #2f9297;
+    border-right: 5px solid #2f9297;
   }
   #frame #sidepanel #contacts ul li.contact.active span.contact-status {
-    border: 2px solid #32465a !important;
+    border: 2px solid #11888e !important;
   }
   #frame #sidepanel #contacts ul li.contact .wrap {
     width: 88%;
@@ -373,7 +373,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    border: 2px solid #2c3e50;
+    border: 2px solid #11888e;
     background: #95a5a6;
   }
   #frame #sidepanel #contacts ul li.contact .wrap span.online {
@@ -439,7 +439,7 @@
     border: none;
     width: 50%;
     padding: 10px 0;
-    background: #32465a;
+    background: #11888e;
     color: #f5f5f5;
     cursor: pointer;
     font-size: 0.85em;
@@ -456,16 +456,16 @@
     outline: none;
   }
   #frame #sidepanel #bottom-bar button:nth-child(1) {
-    border-right: 1px solid #2c3e50;
+    border-right: 1px solid #11888e;
   }
   @media screen and (max-width: 900px) {
     #frame #sidepanel #bottom-bar button:nth-child(1) {
       border-right: none;
-      border-bottom: 1px solid #2c3e50;
+      border-bottom: 1px solid #11888e;
     }
   }
   #frame #sidepanel #bottom-bar button:hover {
-    background: #435f7a;
+    background: #11888e;
   }
   #frame #sidepanel #bottom-bar button i {
     margin-right: 3px;
@@ -551,7 +551,6 @@
     background-color: rgba(0, 0, 0, 0.3);
   }
   #frame .content .messages ul li {
-    float: left;
     display: inline-block;
     clear: both;
     margin: 15px 15px 5px 15px;
@@ -563,16 +562,18 @@
   }
   #frame .content .messages ul li.replies img {
     margin: 6px 8px 0 0;
-  }
+ }
   #frame .content .messages ul li.replies p {
     background: #f5f5f5;
+    float: left;
+    justify-content:left;
   }
   #frame .content .messages ul li.sent img {
     float: right;
     margin: 6px 0 0 8px;
   }
   #frame .content .messages ul li.sent p {
-    background: #435f7a;
+    background: #11888e;
     color: #f5f5f5;
     float: right;
   }
@@ -611,7 +612,7 @@
   }
   #frame .content .message-input .wrap input {
     font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
-    width: calc(100% - 80px);
+    width: calc(100% - 150px);
     padding: 15px 32px 15px 10px;
     font-size: 1em;
     color: #32465a;
@@ -647,11 +648,11 @@
     float: right;
     border: none;
     width: 80px;
-    padding: 19px 0;
+    /* padding: 19px 0; */
+    margin-right: 10px;
     cursor: pointer;
-    background: #32465a;
+    background: #11888e;
     color: #f5f5f5;
-    border-radius: 0px 0px 20px 0px;
   }
   @media screen and (max-width: 900px) {
     #frame .content .message-input .wrap button {
@@ -659,7 +660,7 @@
     }
   }
   #frame .content .message-input .wrap button:hover {
-    background: #435f7a;
+    background: #438e92;
   }
   #frame .content .message-input .wrap button:focus {
     outline: none;
