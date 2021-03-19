@@ -27,10 +27,10 @@ module.exports = {
                        this.getUserTags(data[0].id)
                         .then(async (response) => {
                             tags  = response;
-                            data[0].date_birthday = data[0].date_birthday.split('T')[0]
+                            (data[0].date_birthday) ? data[0].date_birthday = data[0].date_birthday.split('T')[0] : data[0].date_birthday;
                             data[0].tags = tags;
                             let token = await jwt.sign(data[0], 'fuckingSecretKey');
-                            data[0].vfToken = token;
+                            data[0].token = token;
                             resolve(data[0]);
                         }).catch((error)  => {console.log(error)})
                     }else
@@ -235,6 +235,16 @@ module.exports = {
                     reject (err);
                 else
                     resolve (res);
+            });
+        })
+    },
+    insert: function (type, value){
+        return new Promise ((resolve, reject) => {
+            con.query(INSERT[type], value,(err,res) => {
+                if(err)
+                    reject(err);
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
             });
         })
     },

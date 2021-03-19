@@ -18,12 +18,11 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
 
 export default function configureStore (initialState) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(
     persistedReducer,
     initialState,
-    compose(applyMiddleware(routerMiddleware(history), sagaMiddleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware))
   );
   sagaMiddleware.run(rootSaga);
 

@@ -1,11 +1,14 @@
 import { takeLatest, put, call, delay } from "redux-saga/effects";
 import { push } from "react-router-redux";
 import { loginError, loginUserSuccess, loginErrorField } from "../actions/loginAction";
-import {updateUserSuccess} from '../actions/userAction'
+import { updateUserSuccess } from '../actions/userAction'
+import {GetNotif} from '../actions/notifAction'
 import { request } from './helper';
+import socket from '../socketConn';
+import {resetState} from '../actions/resetStateAction';
 
 const login =
-  function *login({ data }) {
+  function* login({ data }) {
     try {
       const username = data.username;
       const password = data.password;
@@ -19,14 +22,22 @@ const login =
       });
 
       if (response.data.isValid) {
-        const  user = response.data.user;
+        const user = response.data.user;
         yield put(loginUserSuccess());
         yield put(updateUserSuccess(user));
-        yield put(push("/Browser"));
+        socket.emit('join', { id: user.id });
+        if (user.step === 3) {
+          yield put(GetNotif())
+          yield put(push("/Browser"));
+        }
+        else
+          yield put(push("/profile"));
       }
       else {
         yield put(loginErrorField(response.data.errorField))
         yield delay(4000);
+        yield put(resetState());
+
       }
     } catch (error) {
       if (error.response) {
@@ -35,6 +46,6 @@ const login =
     }
   };
 
-export default function *log() {
+export default function* log() {
   yield takeLatest("LOGIN_USER", login);
 }

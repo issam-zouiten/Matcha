@@ -117,9 +117,15 @@ const ViewProfile = (props) => {
           />
           <CardMedia style={{ display: 'flex', justifyContent: 'center' }}>
             <Grid className={classes.cardMedia}>
-              <Grid >
-                <img style={{ width: "150px", height: "150px", borderRadius: "100%" }} src={`http://localhost:3001/${user.profilePic}`} alt='photos' />
-              </Grid>
+                {/* <img style={{ width: "150px", height: "150px", borderRadius: "100%" }} src={`http://localhost:3001/${user.profilePic}`} alt='photos' /> */}
+                {images.isImages && images.images.map((tile) => {
+                  return (
+                    <Grid key={tile.id} >
+                    {(tile.isProfilePic) ? <img style={{ width: "150px", height: "150px", borderRadius: "100%" }} src={`http://localhost:3001/${tile.path}`} alt='photos' /> : null}
+                    </Grid>
+                  )
+                }
+                )}
             </Grid>
           </CardMedia>
           <Typography component={'span'} variant={'body2'} style={{ display: 'flex', justifyContent: 'center' }} >
@@ -190,9 +196,9 @@ const ViewProfile = (props) => {
         }
         )}
 
-      <Link to={'/AddPic'}>
-      <IconButton style={{ display: 'flex', float: "left",width: "200px", height: "200px" }} alt='Edit profile'><AddIcon /> </IconButton>
-      </Link>
+        <Link to={'/AddPic'}>
+          <IconButton style={{ display: 'flex', float: "left", width: "200px", height: "200px" }} alt='Edit profile'><AddIcon /> </IconButton>
+        </Link>
       </Grid>
     </Grid>
   );

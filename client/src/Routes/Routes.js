@@ -12,6 +12,7 @@ import ForgotPassword from '../containers/Forgot';
 import Profile from '../containers/completeprofile/profile';
 import EditProfile from '../containers/editProfile/Edit';
 import AddPic from '../containers/editProfile/AddPic';
+import Chat from '../containers/Chat';
 
 
 const Routes = (props) => {
@@ -26,6 +27,7 @@ const Routes = (props) => {
                 <Route exact path="/userprofile" component={user === null ? loginUser : (user.step === 3 ? userprofile : Profile) }/>
                 <Route exact path="/confirme/:token" component={user === null ? confirme  : (user.step === 3 ? Browser : Profile)} />
                 <Route exact path="/resetPassword/:token" component={user === null ? ResetPassword  : (user.step === 3 ? Browser : Profile)} />
+                <Route exact path="/chat" component={user !== null  ? (user.step === 3 ? Chat : Profile) : loginUser }/> 
                 <Route exact path="/forgotPassword" component={user === null ? ForgotPassword  : (user.step === 3 ? Browser : Profile)} />
                 <Route exact path="/edit_profile" component={user === null ? loginUser  : (user.step === 3 ? EditProfile : Profile)} />
                 <Route exact path="/" component={user === null ? loginUser  : (user.step === 3 ? Browser : Profile)} />

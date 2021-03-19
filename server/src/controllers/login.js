@@ -33,8 +33,8 @@ const user = require('../models/user');
 Login = async (req, res) => {
     const { username, password } = req.body;
     let dataUser = await user.getUser('GetUserByUsername', username);
-    let profilePic = await user.select('GetProfilePic', dataUser.id);
     if (dataUser) {
+        let profilePic = await user.select('GetProfilePic', dataUser.id);
         bcrypt.compare(password, dataUser.password)
             .then((response) => {
                 if (response) {
