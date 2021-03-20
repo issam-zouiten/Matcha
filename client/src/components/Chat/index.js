@@ -73,7 +73,7 @@ const SendMessage = (props) => {
     return (
         <div className="message-input">
             <div className="wrap">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{display: 'flex', justifyContent: 'center' }}>
                     <input onChange={handleChange} className="text-msg" type="text" placeholder="Write your message..." disabled={dis} />
                     <button type="submit" className="submit">Send</button>
                 </form>

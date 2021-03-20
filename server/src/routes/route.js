@@ -17,10 +17,21 @@ const deleteImages = require('../controllers/delPics');
 const location = require('../controllers/location');
 const setProfilePicture = require ('../controllers/setProfilePicture');
 const editProfile = require ('../controllers/editProfile');
-const getMatchedUsers = require('../controllers/chat/matchs');
 const loadMessages = require('../controllers/chat/loadMessages');
 const sendMessages = require('../controllers/chat/sendMessage');
-
+const getBlockUser = require('../controllers/getBlockUser');
+const getLikeUser = require('../controllers/getLikeUser');
+const getMatchedUsers = require('../controllers/chat/matchs');
+const dislikeUser = require('../controllers/dislikeUser');
+const reportUser = require('../controllers/reportUser');
+const getNotif = require('../controllers/notif/getNotif');
+const openNotif = require('../controllers/notif/openNotif');
+const getViewProfileList = require('../controllers/getViewProfileList');
+const getLikedByList = require('../controllers/getLikedBy');
+const likeUser = require('../controllers/likeUser');
+const deblockUser = require('../controllers/deblockUser');
+const blockUser = require('../controllers/blockUser');
+const getUsers = require('../controllers/getUsers');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -31,7 +42,7 @@ router.post('/resetPassword', resetPassword);
 const checkToken = require('../controllers/checkToken');
 router.use(async function (req,res,next) {
     const token = req.headers.authorization;
-    console.log('ok')
+    // console.log('ok')
     if(token !== 'undefined')
     {
         const isValid = await checkToken(token);
@@ -52,9 +63,21 @@ router.post('/updateStep',updateStep);
 router.post('/getLocation', getLocation);
 router.post('/getPics', getPics);
 router.post('/delPics',deleteImages);
+router.post('/likeUser',likeUser);
+router.post('/getUsers',getUsers);
+router.post('/blockUser',blockUser);
+router.post('/deblockUser',deblockUser);
 router.post('/sendMessage', sendMessages);
+router.post('/getBlockUser',getBlockUser);
+router.post('/dislikeUser',dislikeUser);
+router.post('/reportUser',reportUser);
+router.post('/getLikeUser',getLikeUser);
+router.post('/getNotif', getNotif);
+router.post('/openNotif', openNotif);
 router.post('/setProfilePicture',setProfilePicture);
 router.post('/location', location);
+router.post('/getViewProfileList',getViewProfileList);
+router.post('/getLikedByList', getLikedByList);
 router.post('/editProfile', editProfile);
 router.post('/getMatchs', getMatchedUsers);
 router.post('/loadMessages', loadMessages);

@@ -1,9 +1,13 @@
 const queries = {
     SELECT: {
-        GetAllUsers: "SELECT  * FROM users",
+        GetAllUsers: "SELECT  DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
+        id,firstname, username, lastname, gender, Sexual_orientation, biography, age,date_birthday,rating,Online,latitude,longitude \
+        FROM users WHERE confirmed = 1 AND complete = 3",
         GetUserByEmail: "SELECT users.* FROM users WHERE users.email = ?",
-        GetUserById: "SELECT users.* FROM users WHERE users.id = ?",
-        GetUserByUsername: "SELECT users.* FROM users WHERE users.username = ?",
+        GetUserById: "SELECT users.*,DATE_FORMAT(users.date_birthday,'%Y-%m-%d') as transDate FROM users \
+                    WHERE users.id = ?",
+        GetUserByUsername: "SELECT users.*,DATE_FORMAT(users.date_birthday,'%Y-%m-%d') as transDate FROM users \
+                    WHERE users.username = ?",
         GetUserByToken: "SELECT * FROM users WHERE vfToken = ?",
         GetTagId: "SELECT tag_id FROM tags WHERE tag = ?",
         GetTags: "SELECT tags.* FROM tags",
@@ -12,7 +16,7 @@ const queries = {
         GetPics: "SELECT * FROM pics WHERE user_id = ?",
         getUserLikes: "SELECT liker_id,liked_id FROM likesList WHERE liker_id=? OR liked_id=?",
         GetProfilePic: "SELECT path FROM pics WHERE user_id = ? AND isProfilePic = 1",
-        GetUserInter: "SELECT tag FROM tags INNER JOIN useTags ON tags.tag_id = useTags.id_tag \
+        GetUserTag: "SELECT tag FROM tags INNER JOIN useTags ON tags.tag_id = useTags.id_tag \
                     WHERE useTags.id_user = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?",
@@ -24,8 +28,16 @@ const queries = {
         getMatchs: "SELECT users.id,users.firstname,users.lastname,pics.path,users.online FROM users,pics \
         WHERE users.id = pics.user_id  AND pics.isProfilePic = 1 AND pics.user_id IN (?)",
         checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
-
-
+        getBlockUser: "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
+        getLikedBy: "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liker_id FROM likesList WHERE liked_id = ?)",
+        getLikeUser: "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liked_id FROM likesList WHERE liker_id = ?)",
+        getViewProfileList: "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT viewer FROM viewProfileList WHERE viewed = ?) \
+        AND id NOT IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)\
+        AND id NOT IN (SELECT blocker_id FROM blockList WHERE blocked_id = ?)",
+        checkLike: "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
+        checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
+        getNotif: "SELECT users.id, users.username, content, seen FROM notifications,users \
+                WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
     },
     INSERT: {
         AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
@@ -34,6 +46,7 @@ const queries = {
         AddPic: 'INSERT INTO pics (user_id, path, isProfilePic) VALUES (?, ?, ?)',
         insertNotif: "INSERT INTO notifications (`by`, receiver, content, seen) VALUES (?, ?, ?, ?)",
         insertMessage: "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
+        reportUser: "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
 
     },
     UPDATE: {
@@ -53,11 +66,15 @@ const queries = {
         UpdateLocation: "UPDATE users SET latitude = ? , longitude = ? WHERE id = ?",
         UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, date_birthday = ?, age = ?, Sexual_orientation = ?, biography = ? \
         WHERE id = ?",
+        updateRating: 'UPDATE users SET rating = rating + ?  WHERE id = ? AND rating <= 5',
+        openNotif: 'UPDATE notifications SET seen = 1',
 
     },
     DELETE: {
         delPics: 'DELETE FROM `pics` WHERE id = ? && user_id = ?',
         DeleteUserTags: "DELETE FROM `useTags` WHERE id_user = ?",
+        deblockUser: "DELETE FROM blockList WHERE blocker_id = ? AND blocked_id = ?",
+        dislikeUser: "DELETE FROM likesList WHERE liker_id = ? AND liked_id = ?",
     },
 }
 

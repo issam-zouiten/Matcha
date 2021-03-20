@@ -75,13 +75,13 @@ editProfile = async (req, res) => {
                 console.log(err);
             })
         });
-        const uu = await user.getUser('GetUserById',info.id);
-        if(uu){
-            delete uu.verif_token;
-            delete uu.password;
+        const userUpdate = await user.getUser('GetUserById',info.id);
+        if(userUpdate){
+            delete userUpdate.vfToken;
+            delete userUpdate.password;
         }
         result.valid = true;
-        res.send({result, uu});
+        res.send({result, userUpdate});
     }
     else{
         

@@ -178,7 +178,6 @@ io.on('connection', socket => {
 
     socket.on('profileViewed', function(data){
         delete data.by.id;
-        console.log(data);
         io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
     });
 

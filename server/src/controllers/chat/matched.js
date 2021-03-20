@@ -9,7 +9,7 @@ matched = async (user_id) => {
         else if(users[i].liked_id === user_id)
             likedBy.push(users[i].liker_id);
     }
-    console.log(likedBy)
+    // console.log(likedBy)
 
     for(var i = 0; i < liked.length; i++){
         if(likedBy.includes(liked[i]))

@@ -104,7 +104,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 const Navbar = (props) => {
-    const { user, handleLogout } = props;
+    const { user, unseenNotif, handleNotifListOpen, handleLogout } = props;
     const classes = useStyles();
     const [sidebar] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -133,12 +133,12 @@ const Navbar = (props) => {
                     <Core.Typography variant="h6" color="primary" className={classes.title}>
                         <Core.Link href="/Browser" style={{ textDecoration: 'none', color: 'inherit' }}><img className={classes.logo} alt="." src={logo} /></Core.Link>
                     </Core.Typography>
-                    {user && <Core.Button edge="end" color="primary" className={classes.notif}>
-                        <Core.Badge>
+                    {user && user.token && <Core.Button edge="end" onClick={handleNotifListOpen} color="primary" className={classes.notif}>
+                        <Core.Badge badgeContent={unseenNotif} color="secondary">
                             <Icons.NotificationsNone />
                         </Core.Badge>
                     </Core.Button>}
-                    {user &&
+                    {user && user.token && 
                         <Core.Typography variant="h6" color="primary" className={classes.title}>
                             {user.username}
                         </Core.Typography>}
@@ -150,7 +150,7 @@ const Navbar = (props) => {
                     {/* <Core.Button color="primary">Logout</Core.Button> */}
                 </Core.Toolbar>
             </Core.AppBar>
-            {user && <StyledMenu
+            {user && user.token && <StyledMenu
                 id="customized-menu"
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
@@ -169,7 +169,7 @@ const Navbar = (props) => {
                     <ListItemIcon>
                         <Icons.ExitToApp fontSize="small" />
                     </ListItemIcon>
-                    {user && <Core.ListItemText onClick={handleCloseMenutwo }>Logout</Core.ListItemText>}
+                    {user && user.token && <Core.ListItemText onClick={handleCloseMenutwo }>Logout</Core.ListItemText>}
                 </Core.ListItem>
             </StyledMenu>}
 

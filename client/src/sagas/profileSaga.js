@@ -20,7 +20,7 @@ function *edit_Info ({data}) {
               },token);
         if(response.data.result.valid)
         {
-            yield put(updateUserSuccess(response.data.uu));
+            yield put(updateUserSuccess(response.data.userUpdate));
         }
         else
         {

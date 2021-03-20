@@ -59,8 +59,9 @@
       background: #32465a;
     }
   }
-  #frame #sidepanel #profile.expanded .wrap {
-    height: 210px;
+  .wrap {
+    padding-top: 40px!important;
+    height: 60px;
     line-height: initial;
   }
   #frame #sidepanel #profile.expanded .wrap p {
