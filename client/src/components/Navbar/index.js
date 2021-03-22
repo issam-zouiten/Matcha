@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import logo from '../../image/logo.png';
 import Menu from '@material-ui/core/Menu';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const StyledMenu = withStyles({
     paper: {
@@ -101,6 +101,18 @@ const useStyles = makeStyles(theme => ({
     },
     menuItem: {
         color: "#11878D",
+    },
+    margiin: {
+        width: 200,
+    },
+    title: {
+        "&:hover": {
+            color: '#09015F',
+            backgroundColor: '#F5F5F5',
+            width:'70px',
+            borderRadius:'5px'
+
+        }
     }
 }));
 const Navbar = (props) => {
@@ -138,11 +150,13 @@ const Navbar = (props) => {
                             <Icons.NotificationsNone />
                         </Core.Badge>
                     </Core.Button>}
-                    {user && user.token && 
-                        <Core.Typography variant="h6" color="primary" className={classes.title}>
-                            {user.username}
-                        </Core.Typography>}
-                        {user && <Core.Button className={classes.username}  onClick={handleOpenMenu}>
+                    {user && user.token &&
+                        <Link to={"/userprofile"} style={{ textDecoration: 'none', color: '#174F70' }}>
+                            <Core.Typography variant="h6" color="primary" className={classes.title}>
+                                {user.username}
+                            </Core.Typography>
+                        </Link>}
+                    {user && <Core.Button className={classes.username} onClick={handleOpenMenu}>
                         <Core.Avatar className={classes.avatar}
                             alt="User Image"
                         />
@@ -155,9 +169,9 @@ const Navbar = (props) => {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleCloseMenu}>
-                <Core.List>
+                <Core.List className={classes.margiin} >
                     {sidebarmenu.map((item) => (
-                        <Link to={item.path} style={{ textDecoration: 'none', color: '#174F70'}} key={item.text}>
+                        <Link to={item.path} style={{ textDecoration: 'none', color: '#174F70' }} key={item.text}>
                             <Core.ListItem button>
                                 <Core.ListItemIcon>{item.icon}</Core.ListItemIcon>
                                 <Core.ListItemText primary={item.text} />
@@ -169,7 +183,7 @@ const Navbar = (props) => {
                     <ListItemIcon>
                         <Icons.ExitToApp fontSize="small" />
                     </ListItemIcon>
-                    {user && user.token && <Core.ListItemText onClick={handleCloseMenutwo }>Logout</Core.ListItemText>}
+                    {user && user.token && <Core.ListItemText onClick={handleCloseMenutwo}>Logout</Core.ListItemText>}
                 </Core.ListItem>
             </StyledMenu>}
 

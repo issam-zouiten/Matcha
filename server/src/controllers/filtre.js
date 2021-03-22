@@ -99,7 +99,7 @@ const filtreUsers = async (user_id,fil,indice) => {
             distance : calculateDistance(user1[0],users[i]),
             nbrTags : await T.calculateNbrTagsCommun(user1[0],users[i]),
             rating : users[i].rating,
-            online : users[i].isOnline,
+            online : users[i].Online,
         }
         users[i].score = calculateScore(user2);
       }

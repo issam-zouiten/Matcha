@@ -138,7 +138,7 @@ const ViewProfile = (props) => {
           <Divider />
           <Box component="fieldset" mb={2} mt={2} borderColor="transparent">
             <div className={classes.rating1} >
-              <BorderLinearProgress variant="determinate" value={rating} />
+              <BorderLinearProgress variant="determinate" value={(rating * 100) / 5} />
             </div>
           </Box>
           <Divider />

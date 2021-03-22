@@ -1,7 +1,8 @@
 const user = require('../../models/user');
 
 openNotif = async (req, res) => {
-    user.update('openNotif')
+    const user_id = req.body.user_id;
+    user.update('openNotif', user_id)
     .then(resp => {
         if(resp)
             res.send(true);

@@ -30,10 +30,12 @@ const openNotif =
   function *openNotif () {
     try {
       const user_id = yield select(state => state.user.id)
+      const data = {user_id : user_id}
       const token = yield select((state) => state.user.token);
       yield call(request, {
           "url": "http://localhost:3001/openNotif",
           "method": "post",
+          "data" :data
         },token);  
       yield put(OpenNotifSuccess());
       socket.emit('openNotif', {id: user_id});

@@ -12,11 +12,11 @@ getUsers = async (req, res) => {
     for (var i = 0; i < users.length; i++) {
         users[i].like = await checkLikes(user_id,users[i].id);
         const images = await img.getPics(users[i].id);
-        const interests  = await user.getUserTags(users[i].id); 
+        const tags  = await user.getUserTags(users[i].id); 
         Da[i]= {
             user :  users[i],
             images : images,   
-            interests: interests,
+            tags: tags,
         }
     }
    res.send(Da);

@@ -12,14 +12,14 @@ module.exports = {
         return data;
     },
     calculateNbrTagsCommun : async function (user1,user2) {
-        const interestsU1  = await user.getUserTags(user1.id);
-        const interestsU2  = await user.getUserTags(user2.id);
+        const tagsU1  = await user.getUserTags(user1.id);
+        const tagsU2  = await user.getUserTags(user2.id);
         let nbrTagsComm = 0;
-        if(interestsU1 === null || interestsU2 === null)
+        if(tagsU1 === null || tagsU2 === null)
             return 0;
-        for (var i = 0; i < interestsU1.length; i++) {
-            for (var j = 0; j < interestsU2.length; j++) {
-                if(interestsU1[i].value === interestsU2[j].value)
+        for (var i = 0; i < tagsU1.length; i++) {
+            for (var j = 0; j < tagsU2.length; j++) {
+                if(tagsU1[i].value === tagsU2[j].value)
                     nbrTagsComm++;
             }
         }

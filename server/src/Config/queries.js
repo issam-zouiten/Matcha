@@ -67,7 +67,7 @@ const queries = {
         UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, date_birthday = ?, age = ?, Sexual_orientation = ?, biography = ? \
         WHERE id = ?",
         updateRating: 'UPDATE users SET rating = rating + ?  WHERE id = ? AND rating <= 5',
-        openNotif: 'UPDATE notifications SET seen = 1',
+        openNotif: 'UPDATE notifications SET seen = 1 WHERE receiver = ?',
 
     },
     DELETE: {

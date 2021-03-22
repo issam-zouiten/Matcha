@@ -7,7 +7,7 @@ getViewProfileList = async (req, res) => {
     for (var i = 0; i < users.length; i++) {
         const images = await img.getProfilPic(users[i].id);
         users[i].profilePic = images[0].path;
-        users[i].like = await  checkLikes(user_id,users[i].id);
+        users[i].like = await checkLikes(user_id,users[i].id);
     }
     res.send(users);
 };

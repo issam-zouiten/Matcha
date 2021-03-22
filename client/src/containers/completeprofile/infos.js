@@ -69,7 +69,6 @@ const connectedAddInfoContainer = connect(mapStateToProps, mapDispatchToProps, m
 
 let AddInfoContainer = reduxForm({
     form: "addInfo",
-    destroyOnUnmount: true,
     validate,
 })(connectedAddInfoContainer);
 

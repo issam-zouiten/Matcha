@@ -3,6 +3,7 @@ const util = require('../util/lib');
 
 locationUser = async (req, res) => {
     const info = req.body;
+    console.log("okiiih")
     if(util.latitude(parseFloat(info.localisation.lat)) && util.longitude(parseFloat(info.localisation.lng))){
         user.update('UpdateLocation', [info.localisation.lat, info.localisation.lng, info.id])
         .then(resp => {

@@ -10,6 +10,7 @@ import {resetState} from '../actions/resetStateAction';
 const login =
   function* login({ data }) {
     try {
+      console.log("okiii")
       const username = data.username;
       const password = data.password;
       const response = yield call(request, {
