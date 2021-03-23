@@ -36,13 +36,6 @@ export default function Notif(props) {
                     {notifList.length > 0 && notifList.length ? notifList.map((value, index) => (
                         <div key={index}>
                         <ListItem >
-                            {/* <ListItemAvatar>
-                        <Avatar
-                            className={classes.large}
-                            alt='Avatar'
-                            src={`http://localhost:3001/images/${value.by.profilePic}`}
-                        />
-                    </ListItemAvatar> */}
                             <ListItemText>{value.content}</ListItemText>
                             <Tooltip title="delete notif"><Button onClick={(e) => deleteNotif(value.by.id)}>
                                 <DeleteForeverSharpIcon color="secondary" />
