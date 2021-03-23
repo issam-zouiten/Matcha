@@ -36,7 +36,7 @@ const queries = {
         AND id NOT IN (SELECT blocker_id FROM blockList WHERE blocked_id = ?)",
         checkLike: "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
         checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
-        getNotif: "SELECT users.id, users.username, content, seen FROM notifications,users \
+        getNotif: "SELECT users.id, users.username, content, notifications.id, seen FROM notifications,users \
                 WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
     },
     INSERT: {
@@ -73,6 +73,7 @@ const queries = {
     DELETE: {
         delPics: 'DELETE FROM `pics` WHERE id = ? && user_id = ?',
         DeleteUserTags: "DELETE FROM `useTags` WHERE id_user = ?",
+        delNotif: "DELETE FROM `notifications` WHERE id = ?",
         deblockUser: "DELETE FROM blockList WHERE blocker_id = ? AND blocked_id = ?",
         dislikeUser: "DELETE FROM likesList WHERE liker_id = ? AND liked_id = ?",
     },

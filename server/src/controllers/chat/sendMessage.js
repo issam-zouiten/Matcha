@@ -28,8 +28,8 @@ sendMessage = async (req, res) => {
         user.insert('insertMessage', [sender, receiver, message])
         .then(async resp => {
             if(resp){
-                await user.insert('insertNotif', [sender, receiver, `${u1.username} sent you a message`, 0]);
-                res.send({sent:true, sender: sender, receiver: receiver, profilePic: p1[0].path, message: message});
+                const notif = await user.insert('insertNotif', [sender, receiver, `${u1.username} sent you a message`, 0]);
+                res.send({sent:true, sender: sender, receiver: receiver, profilePic: p1[0].path, message: message, notif_id: notif.insertId});
             }
         }).catch(err => console.log(err));
     }

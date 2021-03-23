@@ -1,12 +1,13 @@
 import {takeLatest, put, select, call, delay} from "redux-saga/effects";
 import {request} from './helper';
 import {resetNotifState} from '../actions/resetStateAction';
-import {GetNotifSuccess, OpenNotifSuccess} from '../actions/notifAction';
+import {GetNotifSuccess, OpenNotifSuccess, delNotifSuccess} from '../actions/notifAction';
 import socket from '../socketConn';
 
 const getNotif =
   function *getNotif () {
     try {
+
       const user_id = yield select(state => state.user.id);
       const data = {user_id : user_id}
       const token = yield select((state) => state.user.token);
@@ -17,8 +18,34 @@ const getNotif =
         },token);
       if(response.data)
       {
+        console.log('getnotif')
+
         yield put(GetNotifSuccess(response.data));
       }
+    }catch (error) {
+      if (error.response) {
+      }
+    }
+};
+
+const delNotif =
+  function *delNotif ({notif}) {
+    console.log('dkhaaaaaaaaaal sagta')
+    try {
+      console.log("dakhal ")
+      const user_id = yield select(state => state.user.id);
+      const data = {user_id : user_id, notif_id : notif.notifId}
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:3001/delNotif",
+          "method": "post",
+          "data" : data
+        },token);
+      if(response.data)
+      {
+        console.log('deleleted')
+      }
+
     }catch (error) {
       if (error.response) {
 
@@ -49,15 +76,16 @@ const openNotif =
 const resetNotif =
   function *resetNotif () {
     try {
-      yield delay (4000);
+      yield delay (2000);
       yield put(resetNotifState());
     }catch (error) {
       console.log(error);
     }
 };
 
-export default function *() {
+export default function *noti() {
     yield takeLatest("GET_NOTIF", getNotif);
+    yield takeLatest("DEL_NOTIF", delNotif);
     yield takeLatest("OPEN_NOTIF", openNotif);
     yield takeLatest("NEW_NOTIF", resetNotif);
 }

@@ -10,6 +10,7 @@ function App(props) {
   useEffect(() => {
     props.store.dispatch(GetNotif());
     const handleNotif = (data) => {
+      props.store.dispatch(GetNotif());
       props.store.dispatch(NewNotif(data));
     }
     const handleOpenNotif = () => {

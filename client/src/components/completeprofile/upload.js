@@ -59,6 +59,8 @@ const calcImages = (images) =>{
 const  Photos = (props) => {
   const {fileChangedHandler,images,deletePicture,setProfilePicture} = props;
   const classes = useStyles();
+  // console.log(deletePicture)
+
   return (
     <Container>
     <CssBaseline />

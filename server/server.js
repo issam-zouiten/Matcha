@@ -1,3 +1,4 @@
+const checkLikes = require('./src/controllers/checkLikes');
 const app = require('./src/app');
 // const express = require("express");
 // const mysql = require("mysql");
@@ -151,12 +152,14 @@ const io = require("socket.io").listen(server);
 io.on('connection', socket => {
     socket.once('join', function (data) {
         socket.join(data.id);
+        console.log("socket_run")
     });
 
     socket.on('chatMessage', function(data){
         delete data.by.id;
-        io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
-        io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
+        // console.log(data)
+        io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, notif_id: data.notif_id, message: data.message});
+        io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, notif_id: data.notif_id, message: data.message});
         io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
     });
 

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from "react-redux";
 import {LogoutAction} from '../../actions/logoutAction';
 import Nav from '../../components/Navbar';
-import NotifList from "../../components/Notif/index";
+import NotifList from "../../containers/Notif/index";
 import MyMenu from '../../components/commun/menu';
 import {OpenNotif} from '../../actions/notifAction';
 
