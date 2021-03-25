@@ -75,7 +75,7 @@ const Infos = (props) => {
       <div style={{ width: "100%", height: "100%" }}>
         <CssBaseline />
         {selectError && <Flash variant="error" msg={selectError} />}
-        <form className={classes.form}>
+        <form className={classes.form} >
           <Core.Grid container justify="center" spacing={2}>
             <Core.Grid item xs={12} sm={6}>
               <Field

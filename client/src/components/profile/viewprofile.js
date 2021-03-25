@@ -167,7 +167,6 @@ const ViewProfile = (props) => {
       item
       xs={12}
       sm={12}
-      boxShadow={10}
       container
       alignItems="center"
       justify="center"
@@ -177,21 +176,10 @@ const ViewProfile = (props) => {
         marginTop: "6%",
       }}
     >
-      {/* <Grid
-        item
-        xs={12}
-        container
-        alignItems="center"
-        justify="center"
-        style={{
-          height: "750px",
-          backgroundColor: "green",
-          // marginTop:"7%"
-        }} 
-      > */}
       <Box
         component={Grid}
         container
+        item
         sm={11}
         xs={12}
         md={11}
@@ -360,43 +348,7 @@ const ViewProfile = (props) => {
             </Box>
           </Paper>
         </Grid>
-        <Grid
-          container
-          // float="center"
-          // alignItems="center"
-          // justify="center"
-          sm={8}
-          xs={12}
-          lg={8}
-          style={
-            {
-              // justifyContent: 'center',
-              // alignItems: 'center',
-              // alignContent : 'center',
-              // justifyContent: 'space-evently',
-              // overflow: 'hidden',
-              // backgroundColor: "#000000",
-              // display: 'flex',
-              // flexWrap: 'wrap',
-              // padding: '2%',
-              // display: 'flex',
-              // flexWrap: 'wrap',
-              // justifyContent: 'center',
-              // overflow: 'hidden',
-              // backgroundColor: "#D3D3D3",
-              // // display: "flex",
-              // // flexDirection: "wrap",
-              // // maxWidth: "600px",
-              // borderTopRightRadius: "10px",
-              // borderBottomRightRadius: "10px",
-              // borderTopLeftRadius: "0px",
-              // borderBottomLeftRadius: "0px",
-              // border: "1px solid #D7D4D3",
-              // alignContent: "center",
-              // justifyContent: "center",
-            }
-          }
-        >
+        <Grid container item xs={12} sm={8} md={8}>
           <Paper className={classes.secondpaper}>
             <Grid container xm={12} className={classes.greenpaper}>
               {images.isImages &&
@@ -422,19 +374,6 @@ const ViewProfile = (props) => {
                     // </Grid>
                   );
                 })}
-
-              {/* <Link to={"/AddPic"} 
-             style={{
-              width: "200px",
-              // magrin : "10px",
-              height: "200px",
-              borderRadius: "12px",
-              margin: "5px",
-              // display: "flex",
-              // flexDirection: "wrap",
-              backgroundColor: "red",
-              border: "1px solid red",
-            }}> */}
 
               <IconButton
                 style={{

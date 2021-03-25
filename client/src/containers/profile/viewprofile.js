@@ -14,9 +14,9 @@ const ViewProfileContainer = (props) => {
         }
     }, [getPic, getTags, user]);
     return (
-        <div>
+        <>
             <ViewProfile user={user} images={images} tags={user.tags}/>
-        </div>
+        </>
     )
 }
 
