@@ -62,7 +62,6 @@ const sendMsg =
         },token);  
       if(response.data.sent === true)
       {
-        console.log(response.data.notif_id);
         const by = {id: user.id, username: user.username, notif_id: response.data.notif_id};
         socket.emit('chatMessage', {by: by, sender: user.id, receiver: data.receiver, profilePic: response.data.profilePic, message: message, content: `${user.username} sent you a message`});
       }

@@ -6,9 +6,7 @@ getNotif = async (req, res) => {
     .then( async (resp) => {
         let arr = [];
         if(resp){
-            console.log("resp")
             for (var i = 0; i < resp.length; i++) {
-                console.log('notifid',resp[i],'notifid');
                 // const profilePic = await user.select('GetProfilePic', resp[i].id);
                 arr.push({
                     by:{

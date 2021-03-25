@@ -11,7 +11,6 @@ getUsers = async (req, res) => {
     
     for (var i = 0; i < users.length; i++) {
         const images = await img.getPics(users[i].id);
-        console.log(images);
         
         Da[i]= {
             user :  users[i],

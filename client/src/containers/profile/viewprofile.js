@@ -6,7 +6,6 @@ import {getPic} from '../../actions/uploadAction';
 
 const ViewProfileContainer = (props) => {
     const {user,images, getPic, getTags} = props;
-    console.log(user)
     // console.log(getTags)
     useEffect(() => {
         if(user){

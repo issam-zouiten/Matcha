@@ -20,7 +20,6 @@ likeUser = async (req, res) => {
                 if(relation === 'heLiked')
                 {
                     const notif = await user.insert('insertNotif', [data.id, data.liked_user_id, `You are matched with ${data.username}`, 0]);
-                    console.log(notif.insertId)
                     res.send({notif_id: notif.insertId});
 
                 }

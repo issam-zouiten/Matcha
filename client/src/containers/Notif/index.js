@@ -11,11 +11,9 @@ const NotifCont = (props) => {
     }, []);
     
     const deleteNotif= (notifId) => {
-        console.log('dkhal container')
         const notif = {
          notifId : notifId,
         }
-        console.log(notif)
         delNotif(notif);
         GetNotif();
     }

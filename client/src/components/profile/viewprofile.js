@@ -161,7 +161,6 @@ const ViewProfile = (props) => {
   const { user, images, tags } = props;
   const classes = useStyles();
   const rating = user.rating;
-  console.log(user)
   return (
     // <Box  boxShadow={10}>
     <Grid

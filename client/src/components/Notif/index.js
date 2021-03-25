@@ -42,7 +42,6 @@ export default function Notif(props) {
                             </Button>
                             </Tooltip>
                         </ListItem>
-                        {console.log(value.by.id)}
                             </div>
                     )) : <p>No notifications</p>}
                 </List>
