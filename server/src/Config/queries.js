@@ -45,9 +45,9 @@ const queries = {
         AND id NOT IN (SELECT blocker_id FROM blockList WHERE blocked_id = ?)",
         checkLike: "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
         checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
-        getNotif: "SELECT users.id, users.username, content, seen FROM notifications,users \
+        getNotif: "SELECT users.id, users.username, content, notifications.id, seen FROM notifications,users \
                 WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
-    },
+   },
     INSERT: {
         AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
         InsertUserTag: "INSERT INTO useTags (id_user, id_tag) VALUES (?, ?)",

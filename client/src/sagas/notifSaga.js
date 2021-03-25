@@ -8,7 +8,7 @@ const getNotif =
   function *getNotif () {
     try {
 
-      const user_id = yield select(state => state.user.id);
+      const user_id = yield select(state => state.user.id, );
       const data = {user_id : user_id}
       const token = yield select((state) => state.user.token);
       const response = yield call(request, {

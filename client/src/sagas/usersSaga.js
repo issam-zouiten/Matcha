@@ -7,7 +7,6 @@ import socket from '../socketConn';
 export const getUsers =
     function *getUsers (data) {
         try {
-            console.log('hna ta7l7k')
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {
@@ -126,8 +125,7 @@ export const likeUser =
               },token);
             if(response)
             {
-                const by = {id: user.id, username: user.username, notif_id: response.data.notif_id};
-                console.log(response.data.notif_id)
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
                 yield put(deleteUser(liked_user_id));
             }
@@ -145,7 +143,7 @@ export const dislikeUser =
             },token);
             if(response)
             {
-                const by = {id: user.id, username: user.username, notif_id: response.data.notif_id};
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('userUnliked', {by: by, receiver: parseInt(dislike_user_id), content: `${user.username} unliked you`});
                 yield put(deleteLike(dislike_user_id));
             }
@@ -199,7 +197,7 @@ export const viewProfileUser =
               },token);
             if(response)
             {
-                const by = {id: user.id, username: user.username, notif_id: response.data.notif_id};
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
             }
         } catch (error) {
