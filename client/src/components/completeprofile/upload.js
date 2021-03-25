@@ -2,7 +2,8 @@ import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import AddAPhotoIcon from '@material-ui/icons/AddPhotoAlternate';
+// import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import IconButton from '@material-ui/core/IconButton';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -10,10 +11,15 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
 import Tooltip from '@material-ui/core/Tooltip';
+import { yellow } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
   card: {
    height :150,
     position : 'center',
+  },
+  upload: {
+    color: "#11878D",
+    // backgroundImage: "linear-gradient(15deg, #174F70 30%, #11878D 70%)",
   },
   input: {
     display: 'none',
@@ -22,15 +28,31 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 0, 2),
     backgroundColor: theme.palette.secondary.main,
 }, root: {
+  justifyContent: 'center',
+  alignItems: 'center',
+  alignContent: 'center',
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'space-around',
   overflow: 'hidden',
-
+  padding: "2%",
+  marginBottom : "3%",
 },
 gridList: {
-  width: 500,
-  height: 450,
+  
+  // backgroundColor: "red",
+  width: 200,
+  height: 220,
+  marginRight: "20px!important",
+  marginBottom: "20px!important",
+  justifyContent: "center",
+  alignContent : "center",
+   justifyContent: 'center',
+  alignItems: 'center',
+  alignContent: 'center',
+  display: 'flex',
+  // flexWrap: 'wrap',
+  overflow: 'hidden',
+  boxShadow : "10px",
 },
 titleBar: {
   background:
@@ -42,6 +64,12 @@ delete : {
 },
 add : {
   display: 'none',
+},
+machiroot: {
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "space-around",
+  overflow: "hidden",
 }
 }));
 const calcImages = (images) =>{
@@ -59,8 +87,6 @@ const calcImages = (images) =>{
 const  Photos = (props) => {
   const {fileChangedHandler,images,deletePicture,setProfilePicture} = props;
   const classes = useStyles();
-  // console.log(deletePicture)
-
   return (
     <Container>
     <CssBaseline />
@@ -69,22 +95,22 @@ const  Photos = (props) => {
          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  onChange={fileChangedHandler}/>
          <label htmlFor="icon-button-file">
           <IconButton color="primary" aria-label="upload picture" component="span">
-            <AddAPhotoIcon color='primary' style={{fontSize : 70}}/>
+            <AddAPhotoIcon className={classes.upload} style={{fontSize : 70}}/>
           </IconButton>
         </label>
         </div>
       
       </Grid>
-          <div className={classes.root}>
-            <GridList cellHeight={180} className={classes.gridList}>
-
+          <div className={classes.root} style={{display: "flex", flexDirection: "wrap" }}>
               {images.isImages  && images.images.map((tile) => {
                 return (
-                  <GridListTile  key={tile.id}>
+                  <div  key={tile.id}className={classes.machiroot} style={{display: "flex", flexDirection: "wrap" }}>
+                <GridList cellHeight={300} className={classes.gridList}>
+                  <GridListTile   style={{width: "100%", height: "100%", margin : "10px"}}>
                     <img src={`http://localhost:3001/${tile.path}`} alt='photos' />
                     <GridListTileBar
                       actionPosition="left"
-                      className={classes.titleBar}
+                      className={classes.delete}
                       title={tile.isProfilePic === 1 && 'Profile picture'}
                       actionIcon={
                         <Tooltip title ="set profile pic"><IconButton aria-label="profilePic"  onClick={(e) => setProfilePicture(tile.id)}>
@@ -105,9 +131,11 @@ const  Photos = (props) => {
                       }
                     />
                   </GridListTile> 
+                  </GridList>
+                  </div>
                 )}
               )}
-            </GridList>
+          
             
           </div>
     </Container>

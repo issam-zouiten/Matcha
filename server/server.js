@@ -157,19 +157,21 @@ io.on('connection', socket => {
 
     socket.on('chatMessage', function(data){
         delete data.by.id;
-        // console.log(data)
-        io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, notif_id: data.notif_id, message: data.message});
-        io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, notif_id: data.notif_id, message: data.message});
-        io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
+        console.log(data)
+        io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, notif_id: data.by.notif_id, message: data.message});
+        io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, notif_id: data.by.notif_id, message: data.message});
+        io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content, notif_id: data.by.notif_id,});
     });
 
     socket.on('userLiked', async function(data){
         const relation = await checkLikes(data.by.id, data.receiver);
+        console.log(data)
+
         delete data.by.id;
         if(relation === 'match')
-            io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: `You are matched with ${data.by.username}`});
+            io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: `You are matched with ${data.by.username}`,  notif_id: data.by.notif_id});
         else
-            io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
+            io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content, notif_id: data.by.notif_id});
     });
 
     socket.on('userUnliked', async function(data){

@@ -4,18 +4,20 @@ import * as Core from '@material-ui/core';
 // import * as Icons from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../image/logo.png';
-import renderField from '../commun/TextField';
+import textField from '../commun/TextField'
+
 const useStyles = makeStyles(theme => ({
     paper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '50%',
-        padding: '5%',
-        marginTop: "30px",
-        paddingBottom: '7%'
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '100%',
+      height: '50%',
+      paddingTop: '5%',
+      marginTop: "35%",
+      paddingBottom: '7%',
+      borderRadius: theme.spacing(3),
       },
     avatar: {
         margin: theme.spacing(0),
@@ -23,10 +25,15 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(17),
       },
       submit: {
-        margin: theme.spacing(10, 0, 1),
-        backgroundColor: '#11888E',
+        margin: theme.spacing(0, 0, 1),
         justifyContent: 'center',
-        width: "90%"
+        width: "90%",
+        borderRadius: theme.spacing(1),
+        textDecoration: 'none',
+        background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
+        "&:hover": {
+          background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
+        }
       },
       margin: {
         height: "30px",
@@ -53,8 +60,9 @@ const ForgotPassword = (props) => {
                 <form className={classes.form}>
                 <Core.Grid item xs={12}>
                 <Field
+                    style={{width : "90%", marginBottom : "15px"}}
                     name="email"
-                    component={renderField}
+                    component={textField}
                     label="Email"
                     type = "email"
                     rows='1'

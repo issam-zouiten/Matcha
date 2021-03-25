@@ -18,7 +18,7 @@ const getNotif =
         },token);
       if(response.data)
       {
-        console.log('getnotif')
+        console.log(response.data)
 
         yield put(GetNotifSuccess(response.data));
       }
@@ -32,7 +32,7 @@ const delNotif =
   function *delNotif ({notif}) {
     console.log('dkhaaaaaaaaaal sagta')
     try {
-      console.log("dakhal ")
+      console.log(notif.notifId,"dakhal ")
       const user_id = yield select(state => state.user.id);
       const data = {user_id : user_id, notif_id : notif.notifId}
       const token = yield select((state) => state.user.token);

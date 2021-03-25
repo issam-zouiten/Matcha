@@ -18,20 +18,27 @@ likeUser = async (req, res) => {
                 const ra = await rating(data.liked_user_id);
                 await user.update('updateRating',[ra, data.liked_user_id]);
                 if(relation === 'heLiked')
-                    await user.insert('insertNotif', [data.id, data.liked_user_id, `You are matched with ${data.username}`, 0]);
+                {
+                    const notif = await user.insert('insertNotif', [data.id, data.liked_user_id, `You are matched with ${data.username}`, 0]);
+                    console.log(notif.insertId)
+                    res.send({notif_id: notif.insertId});
+
+                }
                 else
-                    await user.insert('insertNotif', [data.id, data.liked_user_id, `${data.username} liked you`, 0]);
-                res.send(true);
+                {
+                    const notif = await user.insert('insertNotif', [data.id, data.liked_user_id, `${data.username} liked you`, 0]);
+                    res.send({notif_id: notif.insertId});
+                }
             }).catch((error) => {
                 console.log(error);
             });
     }
     else
     {
-       console.log('deja liked');
+       console.log('Already liked');
        res.send(false);
     }
-        
+      
     
 };
 module.exports = likeUser;

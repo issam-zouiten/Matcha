@@ -9,14 +9,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import img from '../../image/logo.png';
+import { Paper } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '50%',
+    paddingTop: '5%',
+    marginTop: "35%",
+    paddingBottom: '7%',
+    borderRadius: theme.spacing(3),
   },
   avatar: {
     margin: theme.spacing(3),
@@ -24,20 +31,21 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(15),
   },
   backgroundColorc: {
-    margin: theme.spacing(20, 'auto'),
-    background: '#79A3B1',
-    borderRadius: theme.spacing(2),
+    // margin: theme.spacing(20, 'auto'),
+    // background: '#79A3B1',
+    alignContent: "center",
+    justifyContent: "center"
   },
 }));
 
 const EmailConfirmation = (props) => {
   const classes = useStyles();
   return (
-    <Container component="main" maxWidth="xs" className={classes.backgroundColorc}>
+    <Container  elevation={10} component="main" maxWidth="xs" className={classes.backgroundColorc}>
       <CssBaseline />
-      {props.status !== 'loading' && <div className={classes.paper}>
+      {props.status !== 'loading' && <Paper elevation={10} className={classes.paper}>
       <Avatar variant="rounded" className={classes.avatar} src={img}></Avatar>
-        <Typography variant="h3" color="inherit">
+        <Typography style={{margin : "1%"}} variant="h4" color="inherit">
           Email confirmation
         </Typography>
         {props.status === 'error' && <Typography variant="h6" color="error">
@@ -48,7 +56,7 @@ const EmailConfirmation = (props) => {
           <br/>
           You can now <Link to="/login"  style={{textDecoration: 'none', color:'#008891'}}>Login</Link>
         </Typography>}
-      </div>}
+      </Paper>}
       {props.status === "loading" && <div className={classes.paper} style={{marginTop: "300px"}}><CircularProgress color="secondary" /></div>}
     </Container>
   );

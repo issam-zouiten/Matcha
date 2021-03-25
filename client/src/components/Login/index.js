@@ -42,11 +42,12 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(0, 0, 1),
     justifyContent: 'center',
-    width: "90%",
+    width: "100%",
     borderRadius: theme.spacing(1),
-    textDecoration: 'none', backgroundColor: '#11888e',
+    textDecoration: 'none',
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     "&:hover": {
-      backgroundColor: '#07689f',
+      background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
     }
   },
 
@@ -66,14 +67,37 @@ const useStyles = makeStyles(theme => ({
   },
 
   gridPic: {
-    backgroundImage: `url(${LoginImage})`,
+    [theme.breakpoints.down(800 + theme.spacing(3) * 2)]: {
+      // marginTop: theme.spacing(8),
+      // marginBottom: theme.spacing(6),
+      // padding: theme.spacing(3),
+      display: "none",
+    },
+    // backgroundImage: `url(${LoginImage})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '85%',
-    marginTop:"330px"
+    height : "600px",
+    width : "600px"
+    // marginTop:"330px"
   },
   contPic: {
     alignContent: "center",
     justifyContent: "center"
+  },
+  logimg:{
+    marginTop: "30%",
+    // marginRight: "10%",
+    // paddingRight: "10%",
+    height : "500px",
+    width:"500px"
+  },
+  marginee2: {
+    [theme.breakpoints.down(800 + theme.spacing(3) * 2)]: {
+      // marginTop: theme.spacing(8),
+      // marginBottom: theme.spacing(6),
+      // padding: theme.spacing(3),
+      display: "none",
+    },
+    width : "100px",
   },
 
 }));
@@ -85,13 +109,20 @@ const Login = (props) => {
   return (
     <>
       <Grid container className={classes.contPic} >
-        <Grid item xs={false} sm={false} md={6} className={classes.gridPic}></Grid>
-        <Grid item xs={12} sm={12} md={6} >
+        <Grid style={{display: "flex", flex: "row"}}>
+        <Grid item xs={false} sm={false} md={6} className={classes.gridPic}>
+          {/* <Container maxWidth="xs" style={{backgroundColor:"green",    display: 'flex', alignItems: 'center', justifyContent: 'center',}}> */}
+            <img src={LoginImage} className={classes.logimg}></img>
+          {/* </Container> */}
+          
+        </Grid>
+        <div className={classes.marginee2}></div>
+        <Grid item xs={false} sm={false} >
           <Container maxWidth="xs" >
             <CssBaseline />
+            <div className={classes.marginee}></div>
             {registredStatus === 'success' && <MyFlash variant="success" msg={['Registred successfully, check your e-mail']}/>}
             {status === "errorField" && <MyFlash variant="error" msg={[errors]}/>}
-            <div className={classes.marginee}></div>
             <Paper elevation={10} className={classes.paper}>
               <Avatar variant="rounded" className={classes.avatar} src={logo} />
               <Typography className={classes.login} component="h2" variant="h5">
@@ -133,6 +164,7 @@ const Login = (props) => {
               </Grid>
             </Paper>
           </Container>
+        </Grid>
         </Grid>
       </Grid>
     </>

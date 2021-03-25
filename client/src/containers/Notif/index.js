@@ -34,7 +34,7 @@ const mapStateToProps = (state) => (
 });
 const mapDispatchToProps = {
     delNotif : delNotif,
-    GetNotif:GetNotif,
+    GetNotif : GetNotif,
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(NotifCont);

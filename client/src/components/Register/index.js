@@ -37,13 +37,14 @@ const useStyles = makeStyles(theme => ({
 
   submit: {
     margin: theme.spacing(0, 0, 1),
-    backgroundColor: '#11888e',
+    // backgroundColor: '#11888e',
     justifyContent: 'center',
     width: "90%",
     borderRadius: theme.spacing(1),
     textDecoration: 'none',
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     "&:hover": {
-      backgroundColor: '#07689f'
+      background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
     }
   },
 
@@ -79,16 +80,40 @@ const useStyles = makeStyles(theme => ({
   },
 
   gridPic: {
-    backgroundImage: `url(${LoginImage})`,
+    [theme.breakpoints.down(800 + theme.spacing(3) * 2)]: {
+      // marginTop: theme.spacing(8),
+      // marginBottom: theme.spacing(6),
+      // padding: theme.spacing(3),
+      display: "none",
+    },
+    // backgroundImage: `url(${LoginImage})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '85%',
-    marginTop: "230px"
+    height : "600px",
+    width : "600px"
+    // marginTop:"330px"
+  },
+
+  logimg:{
+    marginTop: "30%",
+    // marginRight: "10%",
+    // paddingRight: "10%",
+    height : "500px",
+    width:"500px"
   },
 
   contPic: {
     alignContent: "center",
     justifyContent: "center"
-  }
+  },
+  marginee2: {
+    [theme.breakpoints.down(800 + theme.spacing(3) * 2)]: {
+      // marginTop: theme.spacing(8),
+      // marginBottom: theme.spacing(6),
+      // padding: theme.spacing(3),
+      display: "none",
+    },
+    width : "100px",
+  },
 
 }));
 
@@ -98,8 +123,15 @@ const Register = (props) => {
   return (
     <>
       <Grid container className={classes.contPic}>
-        <Grid item xs={false} sm={false} md={4} className={classes.gridPic}></Grid>
-        <Grid item xs={12} sm={12} md={4} >
+      <Grid style={{display: "flex", flex: "row"}}>
+        <Grid item xs={false} sm={false} md={6} className={classes.gridPic}>
+            {/* <Container maxWidth="xs" style={{backgroundColor:"green",    display: 'flex', alignItems: 'center', justifyContent: 'center',}}> */}
+              <img src={LoginImage} className={classes.logimg}></img>
+            {/* </Container> */}
+            
+          </Grid>
+          <div className={classes.marginee2}></div>
+        <Grid  item xs={false} sm={false} md={6}>
           <Container className={classes.container} component="main" maxWidth="xs">
             <CssBaseline />
             {status === "error" && <MyFlash variant="error" msg={[err]} />}
@@ -164,6 +196,7 @@ const Register = (props) => {
               </div>}
             {status === "loading" && <div className={classes.paper} style={{ marginTop: "300px" }}><CircularProgress color="secondary" /></div>}
           </Container>
+        </Grid>
         </Grid>
       </Grid>
     </>

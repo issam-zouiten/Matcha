@@ -5,14 +5,14 @@ const user = require('../models/user');
 const so = require('./sort');
 const filtreUsers = async (user_id,fil,indice) => {
     let user2 = '';
-    let SorteTabe = '';
     const filtre = findFilter(fil);
     const user1 = await user.select('GetUserById',user_id);
+    
     const users = await user.getUsers(user_id);
-    if(fil && fil.router === '/browse' || fil === null )
+    if(fil && fil.router === '/browser' || fil === null )
     {
         for (var i = 0; i < users.length; i++) {
-            if(user1[0].sexOrient === 'men')
+            if(user1[0].Sexual_orientation === 'men')
             {
                 if(users[i].gender === 'female')
                 {
@@ -20,7 +20,7 @@ const filtreUsers = async (user_id,fil,indice) => {
                     i--;
                 }
             }
-            else if(user1[0].sexOrient === 'women')
+            else if(user1[0].Sexual_orientation === 'women')
             {
                 if(users[i].gender === 'male')
                 {
@@ -103,7 +103,8 @@ const filtreUsers = async (user_id,fil,indice) => {
         }
         users[i].score = calculateScore(user2);
       }
-      SorteTabe = users.sort(so('-score'));
+      
+      users.sort(so('-score'));
       const Data = users.slice(cmp,cmp+20);
         
     return (Data);

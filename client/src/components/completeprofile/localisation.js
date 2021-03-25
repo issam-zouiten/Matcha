@@ -15,8 +15,9 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     },
     form: {
-        height: '40vh',
-        width: '100%',
+        height: '35vh',
+        width: '110%',
+        // backgroundcolor : "red",
         marginTop: theme.spacing(2),
     },
     submit: {
@@ -43,9 +44,6 @@ const Localisation = (props) => {
         <Container component="main" maxWidth="xs">
             <CssBaseline />
                 <div className={classes.paper}>
-                    <Typography component="h1" variant="h5" color="primary">
-                        Localisation
-                    </Typography>
                     <Typography color="inherit"> Click to set your location.</Typography>
                     <div  className={classes.form}>
                         <GoogleMapReact

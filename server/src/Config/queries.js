@@ -1,11 +1,20 @@
 const queries = {
     SELECT: {
+        GetUsers:           "SELECT DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
+        id,firstname, lastname, username, gender, Sexual_orientation, biography, age,date_birthday,rating,Online,latitude,longitude FROM users\
+        WHERE id != ? AND \
+        id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
+        id NOT IN  (SELECT blocker_id FROM blockList  WHERE blocked_id = ?) AND \
+        id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
+        AND verif = 1 \
+        AND step = 3 \
+        ORDER BY rating DESC",
         GetAllUsers: "SELECT  DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
         id,firstname, username, lastname, gender, Sexual_orientation, biography, age,date_birthday,rating,Online,latitude,longitude \
-        FROM users WHERE confirmed = 1 AND complete = 3",
+        FROM users WHERE verif = 1 AND step = 3",
         GetUserByEmail: "SELECT users.* FROM users WHERE users.email = ?",
         GetUserById: "SELECT users.*,DATE_FORMAT(users.date_birthday,'%Y-%m-%d') as transDate FROM users \
-                    WHERE users.id = ?",
+        WHERE users.id = ?",
         GetUserByUsername: "SELECT users.*,DATE_FORMAT(users.date_birthday,'%Y-%m-%d') as transDate FROM users \
                     WHERE users.username = ?",
         GetUserByToken: "SELECT * FROM users WHERE vfToken = ?",
@@ -36,14 +45,16 @@ const queries = {
         AND id NOT IN (SELECT blocker_id FROM blockList WHERE blocked_id = ?)",
         checkLike: "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
         checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
-        getNotif: "SELECT users.id, users.username, content, notifications.id, seen FROM notifications,users \
+        getNotif: "SELECT users.id, users.username, content, seen FROM notifications,users \
                 WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
     },
     INSERT: {
         AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
         InsertUserTag: "INSERT INTO useTags (id_user, id_tag) VALUES (?, ?)",
         CreateTag: "INSERT INTO tags (tag, create_tag) VALUES (?, ?)",
+        blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
         AddPic: 'INSERT INTO pics (user_id, path, isProfilePic) VALUES (?, ?, ?)',
+        likeUser :'INSERT INTO likesList (liker_id, liked_id, date) VALUES (?, ?, NOW())',
         insertNotif: "INSERT INTO notifications (`by`, receiver, content, seen) VALUES (?, ?, ?, ?)",
         insertMessage: "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
         reportUser: "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
@@ -73,8 +84,8 @@ const queries = {
     DELETE: {
         delPics: 'DELETE FROM `pics` WHERE id = ? && user_id = ?',
         DeleteUserTags: "DELETE FROM `useTags` WHERE id_user = ?",
-        delNotif: "DELETE FROM `notifications` WHERE id = ?",
         deblockUser: "DELETE FROM blockList WHERE blocker_id = ? AND blocked_id = ?",
+        delNotif: "DELETE FROM `notifications` WHERE id = ?",
         dislikeUser: "DELETE FROM likesList WHERE liker_id = ? AND liked_id = ?",
     },
 }

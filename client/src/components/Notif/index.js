@@ -27,14 +27,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function Notif(props) {
     const classes = useStyles();
-    const { notifList, deleteNotif } = props;
+    const {notifList, deleteNotif} = props;
     return (
         <>
             <Grid container justify="center">
                 <List className={classes.root}>
-
                     {notifList.length > 0 && notifList.length ? notifList.map((value, index) => (
                         <div key={index}>
+                        {console.log(value.by.id)}
                         <ListItem >
                             <ListItemText>{value.content}</ListItemText>
                             <Tooltip title="delete notif"><Button onClick={(e) => deleteNotif(value.by.id)}>
@@ -42,7 +42,6 @@ export default function Notif(props) {
                             </Button>
                             </Tooltip>
                         </ListItem>
-                        {console.log(value.by.id)}
                             </div>
                     )) : <p>No notifications</p>}
                 </List>

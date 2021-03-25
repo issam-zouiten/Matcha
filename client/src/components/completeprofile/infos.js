@@ -129,6 +129,10 @@ const Infos = (props) => {
                 component={renderDatepicker}
               />
             </Core.Grid>
+            {/* <Core.Grid item xs={5}>
+                <Core.FormLabel component="legend">Interests</Core.FormLabel>
+                <Field name='interests'/>
+              </Core.Grid> */}
             <Core.Grid item xs={12}>
               <Core.FormLabel component="legend">Bio</Core.FormLabel>
               <Field

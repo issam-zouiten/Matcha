@@ -9,13 +9,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import renderField from '../commun/TextField'
 import RadioGroup from '../commun/RadioGroup';
 import MyFlash from '../commun/flash';
+import * as Core from "@material-ui/core";
 import EditLoc from '../../containers/editProfile/EditLoc'
 const useStyles = makeStyles(theme => ({
   paper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%'
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(8),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
   },
   form: {
     width: '100%',
@@ -70,20 +74,26 @@ const ProfileInfo = (props) => {
     </div>
   );
   return (
-    <div>
+      <Grid xs={12}
+      container
+      alignItems="center"
+      justify="center"
+      style={{backgroundColor: "green"}}>
       {selectError && <MyFlash msg={selectError} variant="error" />}
-      <form>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={5}>
+      <Grid xs={8} style={{backgroundColor: "yellow"}}>
+        <form>
+        <Core.Paper container justify="center" className={classes.paper} spacing={2} xs={5} style={{backgroundColor: "red"}}>
+          
+          <Grid item xs={6}>
             <FormLabel component="legend">Firstname</FormLabel>
             <Field
               name="firstname"
               component={renderField}
-              type="text"
+              type="text"Î
               rows='1'
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Lastname</FormLabel>
             <Field
               name="lastname"
@@ -92,7 +102,7 @@ const ProfileInfo = (props) => {
               rows='1'
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Username</FormLabel>
             <Field
               name="username"
@@ -101,7 +111,7 @@ const ProfileInfo = (props) => {
               rows='1'
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Email</FormLabel>
             <Field
               name="email"
@@ -110,7 +120,7 @@ const ProfileInfo = (props) => {
               rows='1'
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Gender</FormLabel>
             <Field component={RadioGroup} name="gender" required={true} options={[
               { title: 'Male', value: 'male' },
@@ -118,14 +128,14 @@ const ProfileInfo = (props) => {
             ]}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Birthday</FormLabel>
             <Field
               name="date_birthday"
               component={renderDatepicker}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Match with</FormLabel>
             <Field component={RadioGroup} name="Sexual_orientation" required={true} options={[
               { title: 'Men ', value: 'men' },
@@ -134,11 +144,11 @@ const ProfileInfo = (props) => {
             ]}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6}>
             <FormLabel component="legend">Tags</FormLabel>
             <Field name='tags' component={selectField} />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={12}>
             <FormLabel component="legend">Bio</FormLabel>
             <Field
               name="biography"
@@ -170,9 +180,11 @@ const ProfileInfo = (props) => {
           <Grid item container justify='center' xs={3}>
             <Button onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
           </Grid>
-        </Grid>
-      </form>
-    </div>
+         
+        </Core.Paper>
+          </form>
+          </Grid>
+          </Grid>
   )
 }
 
