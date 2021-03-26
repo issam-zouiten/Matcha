@@ -6,6 +6,9 @@ import "./Cards.css";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import CancelIcon from '@material-ui/icons/Cancel';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Cards(props) {
-  const { user, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile} = props;
+  const { user, handleLike, handleDislike, handleReport, handleBlock, handleViewProfile } = props;
   const rating = user.user.rating;
   const classes = useStyles();
   const theme = useTheme();
@@ -30,7 +33,7 @@ export default function Cards(props) {
     setActiveStep(step);
   };
   return (
-    
+
     <div className="container">
       <Core.Card
         className="card"
@@ -53,16 +56,16 @@ export default function Cards(props) {
           avatar={
             user.images.length !== 0
               ? user.images.map((tile) => (
-                    <div key={tile.id}>
-                      {tile.isProfilePic === 1 && (
-                        <Core.Avatar
-                          style={{ border: "1px solid #c9c9c9" }}
-                          src={`http://localhost:3001/${tile.path}`}
-                        />
-                      )}
-                    </div>
-                  )
-                )
+                <div key={tile.id}>
+                  {tile.isProfilePic === 1 && (
+                    <Core.Avatar
+                      style={{ border: "1px solid #c9c9c9" }}
+                      src={`http://localhost:3001/${tile.path}`}
+                    />
+                  )}
+                </div>
+              )
+              )
               : null
           }
           title={user.user.username}
@@ -99,40 +102,40 @@ export default function Cards(props) {
         </div>
         <div className="cardAction">
           {/* {console.log(user)} */}
-        {user.user.like === null &&
-          <Core.Tooltip title="Like" >
-            <Core.IconButton aria-label="Like" onClick={(e) => handleLike(user.user.id)}>
-              <Icons.FavoriteBorder color="secondary" />
-            </Core.IconButton>
-          </Core.Tooltip>
+          {user.user.like === null &&
+            <Core.Tooltip title="Like" >
+              <Core.IconButton aria-label="Like" onClick={(e) => handleLike(user.user.id)}>
+                <Icons.FavoriteBorder style={{ color: '#34ada4' }} />
+              </Core.IconButton>
+            </Core.Tooltip>
           }
           {user.user.like === 'iLike' &&
-          <Core.Tooltip title ="Unlike"><Core.IconButton aria-label="Unlike" onClick={(e) => handleDislike(user.user.id)}>
-            <Icons.Favorite  color="secondary"/>
-          </Core.IconButton></Core.Tooltip>
-        }
-        {user.user.like === 'heLiked' &&
-          <Core.Tooltip title ="Like back"><Core.IconButton aria-label="Like back"  onClick={(e) => handleLike(user.user.id)}>
-            <Icons.SupervisedUserCircleOutlined color="primary"/>
-          </Core.IconButton></Core.Tooltip>
-        }
-        {user.user.like === 'match' &&
-          <Core.Tooltip title ="Unmatch"><Core.IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(user.user.id)}>
-            <Icons.SupervisedUserCircleRounded color="primary"/>
-          </Core.IconButton></Core.Tooltip>
-        }
-          
+            <Core.Tooltip title="Unlike"><Core.IconButton aria-label="Unlike" onClick={(e) => handleDislike(user.user.id)}>
+              <Icons.Favorite style={{ color: '#34ada4' }}/>
+            </Core.IconButton></Core.Tooltip>
+          }
+          {user.user.like === 'heLiked' &&
+            <Core.Tooltip title="Like back"><Core.IconButton aria-label="Like back" onClick={(e) => handleLike(user.user.id)}>
+              <LoyaltyIcon style={{ color: '#FFF' }} />
+            </Core.IconButton></Core.Tooltip>
+          }
+          {user.user.like === 'match' &&
+            <Core.Tooltip title="Unmatch"><Core.IconButton aria-label="Unmatch" onClick={(e) => handleDislike(user.user.id)}>
+              <CancelIcon style={{ color: '#34ada4' }} />
+            </Core.IconButton></Core.Tooltip>
+          }
+
           <Core.Tooltip title="Block">
             <Core.IconButton aria-label="Block" onClick={(e) => handleBlock(user.user.id)}>
-              <Icons.Block color="secondary" />
+              <Icons.Block style={{ color: '#34ada4' }} />
             </Core.IconButton>
           </Core.Tooltip>
-          <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleReport(user.user.id)}>
-        <Icons.Report  color="secondary"/>
-        </Core.IconButton></Core.Tooltip>
-          <Core.Tooltip title ="Report"><Core.IconButton aria-label="Report"  onClick={(e) => handleViewProfile(user.user.id)}>
-        <VisibilityIcon  color="secondary"/>
-        </Core.IconButton></Core.Tooltip>
+          <Core.Tooltip title="Report"><Core.IconButton aria-label="Report" onClick={(e) => handleReport(user.user.id)}>
+            <Icons.Report style={{ color: '#34ada4' }} />
+          </Core.IconButton></Core.Tooltip>
+          <Core.Tooltip title="ViewProfile"><Core.IconButton aria-label="Report" onClick={(e) => handleViewProfile(user.user.id)}>
+            <VisibilityIcon style={{ color: '#34ada4' }}/>
+          </Core.IconButton></Core.Tooltip>
         </div>
       </Core.Card>
     </div>
