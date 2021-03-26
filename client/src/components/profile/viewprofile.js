@@ -185,7 +185,7 @@ const ViewProfile = (props) => {
         md={11}
         lg={6}
         boxShadow={10}
-        className = {classes.bigbox}
+        className={classes.bigbox}
       >
         {/* <Box style={{height : "750px", width: "100%"}}> */}
         <Grid
@@ -374,24 +374,24 @@ const ViewProfile = (props) => {
                     // </Grid>
                   );
                 })}
-
-              <IconButton
-                style={{
-                  width: "200px",
-                  // magrin : "10px",
-                  height: "200px",
-                  borderRadius: "12px",
-                  margin: "5px",
-                  // display: "flex",
-                  // flexDirection: "wrap",
-                  // backgroundColor: "red",
-                  // border: "1px solid red",
-                }}
-                alt="Edit profile"
-              >
-                <AddIcon />
-              </IconButton>
-              {/* </Link> */}
+              <Link to={'/AddPic'}>
+                <IconButton
+                  style={{
+                    width: "200px",
+                    // magrin : "10px",
+                    height: "200px",
+                    borderRadius: "12px",
+                    margin: "5px",
+                    // display: "flex",
+                    // flexDirection: "wrap",
+                    // backgroundColor: "red",
+                    // border: "1px solid red",
+                  }}
+                  alt="Edit profile"
+                >
+                  <AddIcon />
+                </IconButton>
+              </Link>
             </Grid>
           </Paper>
         </Grid>

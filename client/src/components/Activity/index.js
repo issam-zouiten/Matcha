@@ -86,13 +86,15 @@ const Activity = (props) => {
   };
 
   return (
-    <Grid container
+    <Grid container 
     justify="center"
     alignItems='center'
+    // style={{height:'100%'}}
+
     >
       <Core.Paper
         className={classes.paper}>
-        <Grid container >
+        <Grid container item>
           <Tabs
             orientation="vertical"
             value={value}

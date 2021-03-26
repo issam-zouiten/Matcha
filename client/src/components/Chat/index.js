@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './chat.css';
 import MyFlash from '../commun/flash'
+import SendIcon from '@material-ui/icons/Send';
+import IconButton from '@material-ui/core/IconButton';
 
 const Conversations = (props) => {
     const { handleSelectConversation, selected, conversations } = props;
@@ -75,7 +77,7 @@ const SendMessage = (props) => {
             <div className="wrap">
                 <form onSubmit={handleSubmit} style={{display: 'flex', justifyContent: 'center' }}>
                     <input onChange={handleChange} className="text-msg" type="text" placeholder="Write your message..." disabled={dis} />
-                    <button type="submit" className="submit">Send</button>
+                    <IconButton type="submit" className="submit" ><SendIcon/></IconButton>
                 </form>
             </div>
         </div>
