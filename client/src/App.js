@@ -10,15 +10,15 @@ function App(props) {
   useEffect(() => {
     props.store.dispatch(GetNotif());
     const handleNotif = (data) => {
-      props.store.dispatch(GetNotif());
       props.store.dispatch(NewNotif(data));
     }
     const handleOpenNotif = () => {
+      props.store.dispatch(GetNotif());
       props.store.dispatch(OpenNotifSuccess());
     }
     socket.on('new_notif', handleNotif);
     socket.on('openedNotif', handleOpenNotif);
-  }, [])
+  }, [props.store])
   const handlerFunc =  () =>  {
     // console.log('connected')
     props.store.dispatch({type: "REJOIN_ROOM"});

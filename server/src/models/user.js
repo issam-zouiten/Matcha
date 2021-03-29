@@ -6,8 +6,8 @@ const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
 var jwt = require('jsonwebtoken');
 module.exports = {
-    Register: function (username, email, password) {
-        con.query(INSERT.AddUser, [username, email, password], (err, res) => {
+    Register: function (firstname, lastname, username, email, password) {
+        con.query(INSERT.AddUser, [firstname, lastname, username, email, password], (err, res) => {
             if (err) {
                 throw err;
             }

@@ -7,6 +7,7 @@ import logo from "../../image/logo.png";
 import Menu from "@material-ui/core/Menu";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { Link } from "react-router-dom";
+import imgprofile from "../../image/default.jpg"
 
 const StyledMenu = withStyles({
   paper: {
@@ -72,8 +73,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: "red",
     // margin: "0",
     // marginLeft: "0.5%",
-    padding: "0px",
-    fontSize: "20px",
+      fontSize: "20px",
   },
   drawer: {
     width: "200",
@@ -104,12 +104,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "#174F70",
     margin: "0px",
-    "&:hover": {
-      color: "#09015F",
-      backgroundColor: "#F5F5F5",
-      width: "70px",
-      borderRadius: "5px",
-    },
   },
 }));
 const Navbar = (props) => {
@@ -135,10 +129,10 @@ const Navbar = (props) => {
   };
   const sidebarmenu = [
     { text: "Browse", path: "/Browser", icon: <Icons.Apps /> },
-    { text: "Search", path: "/search", icon: <Icons.Search /> },
+    // { text: "Search", path: "/search", icon: <Icons.Search /> },
     { text: "Profile", path: "/userprofile", icon: <Icons.Person /> },
     { text: "Activity", path: "/activity", icon: <Icons.History /> },
-    { text: "Friends", path: "/chat", icon: <Icons.Chat /> },
+    { text: "Chat", path: "/chat", icon: <Icons.Chat /> },
   ];
   return (
     <Core.Grid container item sm={12} className={classes.containeer}>
@@ -197,6 +191,10 @@ const Navbar = (props) => {
                           src={`http://localhost:3001/${tile.path}`}
                         />
                       ) : null}
+                      {/* {!images.isImages ? (<Core.Avatar
+                          className={classes.avatar}
+                          src={imgprofile}
+                      />) : ""} */}
                     </Core.Grid>
                   );
                 })}

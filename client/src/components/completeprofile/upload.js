@@ -11,7 +11,6 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
 import Tooltip from '@material-ui/core/Tooltip';
-import { yellow } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
   card: {
    height :150,
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   marginBottom : "3%",
 },
 gridList: {
-  
+
   // backgroundColor: "red",
   width: 200,
   height: 220,
@@ -46,9 +45,7 @@ gridList: {
   marginBottom: "20px!important",
   justifyContent: "center",
   alignContent : "center",
-   justifyContent: 'center',
   alignItems: 'center',
-  alignContent: 'center',
   display: 'flex',
   // flexWrap: 'wrap',
   overflow: 'hidden',

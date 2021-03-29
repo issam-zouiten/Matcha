@@ -44,18 +44,19 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    id: `horizontal-tab-${index}`,
+    'aria-controls': `horizontal-tabpanel-${index}`,
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    width:615,
+    width:640,
+    height:500,
     justifyContent: 'center',
     border: "1px solid #D7D4D3",
     borderRadius: '8px',
-    marginTop: '145px',
+    marginTop: '125px',
     background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
   },
 
@@ -70,7 +71,12 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
   },
   tabs: {
-    width: 300,
+    width:'100%',
+  },
+  tab: {
+    [theme.breakpoints.down(425 + theme.spacing(2) * 2)]: {
+      width:'25%',
+    },
   },
 
 
@@ -93,19 +99,19 @@ const Activity = (props) => {
 
     >
       <Core.Paper
-        className={classes.paper}>
+        className={classes.paper} elevation={10}>
         <Grid container item>
           <Tabs
-            orientation="vertical"
+            orientation="horizontal"
             value={value}
             onChange={handleChange}
             className={classes.tabs}
-            style={{backgroundColor:'#FFF'}}
+            style={{backgroundColor:'#FFF', borderTopRightRadius: '6px', borderTopLeftRadius: '6px'}}
           >
-            <Tab label="You blocked" {...a11yProps(0)} />
-            <Tab label="You like" {...a11yProps(1)} />
-            <Tab label="You're liked by" {...a11yProps(2)} />
-            <Tab label="Profile views" {...a11yProps(3)} />
+            <Tab className={classes.tab} label="You blocked" {...a11yProps(0)} />
+            <Tab className={classes.tab} label="You like" {...a11yProps(1)} />
+            <Tab className={classes.tab} label="You're liked by" {...a11yProps(2)} />
+            <Tab className={classes.tab} label="Profile views" {...a11yProps(3)} />
           </Tabs>
           <TabPanel value={value} index={0}>
             <List >

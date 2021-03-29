@@ -39,6 +39,7 @@ const delNotif =
         },token);
       if(response.data)
       {
+        yield put(delNotifSuccess(notif.notifId));
       }
 
     }catch (error) {
@@ -71,7 +72,7 @@ const openNotif =
 const resetNotif =
   function *resetNotif () {
     try {
-      yield delay (2000);
+      yield delay (1000);
       yield put(resetNotifState());
     }catch (error) {
       console.log(error);

@@ -23,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(5),
     paddingBottom: theme.spacing(2),
   },
-  chose: {
-  },
+
 }));
 
 const renderDatepicker = ({ input, label, meta: { touched, error } }
@@ -33,6 +32,7 @@ const renderDatepicker = ({ input, label, meta: { touched, error } }
     {...input}
     type="date"
     label={label}
+    style={{width:'400px'}}
     error={touched && (error ? true : false)}
     helperText={touched && error}
     InputLabelProps={{
@@ -95,7 +95,7 @@ const Infos = (props) => {
                 rows='1'
               />
             </Core.Grid>
-            <Core.Grid item xs={12}>
+            <Core.Grid item xs={12} sm={6}>
               <Core.FormLabel component="legend">Gender</Core.FormLabel>
               <Core.RadioGroup
               >
@@ -108,7 +108,7 @@ const Infos = (props) => {
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
-            <Core.Grid item xs={12}>
+            <Core.Grid item xs={12} sm={6}>
               <Core.FormLabel component="legend">Matches</Core.FormLabel>
               <Core.RadioGroup
               >
@@ -122,17 +122,22 @@ const Infos = (props) => {
                 </div>
               </Core.RadioGroup>
             </Core.Grid>
-            <Core.Grid className={classes.chose} item xs={12}>
+            <Core.Grid item xs={12} sm={6}>
               <Core.FormLabel component="legend">Birthday</Core.FormLabel>
               <Field
                 name="date_birthday"
                 component={renderDatepicker}
+                
               />
             </Core.Grid>
             {/* <Core.Grid item xs={5}>
                 <Core.FormLabel component="legend">Interests</Core.FormLabel>
                 <Field name='interests'/>
               </Core.Grid> */}
+            <Core.Grid item xs={12} sm={6}>
+              <Core.FormLabel component="legend">Tags</Core.FormLabel>
+              <Field name='tags' component={selectField} />
+            </Core.Grid>
             <Core.Grid item xs={12}>
               <Core.FormLabel component="legend">Bio</Core.FormLabel>
               <Field
@@ -142,10 +147,6 @@ const Infos = (props) => {
                 rows='4'
                 variant='outlined'
               />
-            </Core.Grid>
-            <Core.Grid item xs={12}>
-              <Core.FormLabel component="legend">Tags</Core.FormLabel>
-              <Field name='tags' component={selectField} />
             </Core.Grid>
             <Core.Grid container direction="row" item xs={12}>
               <Core.Grid item xs={9} />

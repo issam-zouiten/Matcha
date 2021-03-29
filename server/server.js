@@ -152,7 +152,7 @@ const io = require("socket.io").listen(server);
 io.on('connection', socket => {
     socket.once('join', function (data) {
         socket.join(data.id);
-        console.log("socket_run")
+        // console.log("socket_run")
     });
 
     socket.on('chatMessage', function(data){

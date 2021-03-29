@@ -10,7 +10,7 @@ const ActivityContainer = (props) => {
         getBlockUser();
         getLikeUser();
         getLikedBy();
-}, []);
+}, [getViewProfileList,getBlockUser, getLikeUser, getLikedBy]);
     const handleDeblock = (deblocked_user_id) => {
         deblockUser(deblocked_user_id);
     }

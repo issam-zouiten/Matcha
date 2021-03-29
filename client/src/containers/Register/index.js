@@ -6,6 +6,8 @@ import {reduxForm } from 'redux-form';
 const validate = (values) => {
     const errors = {};
     const requiredFields = [
+        'firstname',
+        'lastname',
         'username',
         'email',
         'password',
@@ -18,6 +20,10 @@ const validate = (values) => {
         }
     });
 
+    if(values.firstname && !/^[a-zA-Z]{2,20}$/.test(values.firstname))
+        errors.firstname = 'firstname can contain 2-20 characters, only letters (a-zA-Z)';
+    if(values.lastname && !/^[a-zA-Z]{2,20}$/.test(values.lastname))
+        errors.lastname = 'lastname can contain 2-20 characters, only letters (a-zA-Z)';
     if(values.username && !/^[a-z0-9_-]{2,20}$/.test(values.username))
         errors.username = 'Username can contain 2-20 characters, letters (a-z), numbers, "_" and "-"';
     if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))

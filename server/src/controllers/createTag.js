@@ -8,13 +8,13 @@ createTag = async (req, res) => {
             res.send({ created: false, error: 'You can not create more than 6 tags !' });
         }
         else{
-            if(tag.length < 20)
+            if(tag.length < 10)
             {
-                user.createTag(tag, id);
-                res.send({ created: true, tags: {value: tag, label: tag} })
+                user.createTag('#'+tag, id);
+                res.send({ created: true, tags: {value: '#'+tag, label: '#'+tag} })
             }
             else
-                res.send({ created: false, error: 'maximum is 20 characters !' })
+                res.send({ created: false, error: 'maximum is 10 characters !' })
         }
     }).catch(err => console.log(err));
 };

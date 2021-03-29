@@ -10,6 +10,8 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import renderField from '../commun/TextField';
 import logo from '../../image/logo.png';
+import MyFlash from '../commun/flash';
+import { Paper } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -18,10 +20,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    marginTop: "30px",
+    height: '50%',
     paddingTop: '5%',
-    paddingBottom: '7%'
-    //backgroundColor: theme.palette.secondary.main,
+    marginTop: "35%",
+    paddingBottom: '7%',
+    borderRadius: theme.spacing(3),
   },
   form: {
     width: '80%',
@@ -31,9 +34,14 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(0, 0, 1),
-    backgroundColor: '#11888e',
     justifyContent: 'center',
-    width: "90%"
+    width: "100%",
+    borderRadius: theme.spacing(1),
+    textDecoration: 'none',
+    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
+    "&:hover": {
+      background: "linear-gradient(30deg, #0b777d 10%, #34ada4 90%)",
+    }
   },
   avatar: {
     margin: theme.spacing(0),
@@ -60,7 +68,10 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       color: '#09015F'
     }
-  }
+  },
+  login: {
+    color: '#07689f',
+  },
 }));
 
 
@@ -72,12 +83,12 @@ const ResetPassword = (props) => {
     return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {resetPasswordStatus === "success"}
-    {resetPasswordStatus === "error" && resetError}
+    {resetPasswordStatus === "success" &&  <MyFlash variant="success" msg={['Your password is Updated']}/>}
+    {resetPasswordStatus === "error" &&  <MyFlash variant="error" msg={[resetError +' You will be redirected to login']}/>}
     {status !== "loading" &&
-    <div className={classes.paper}>
+    <Paper elevation={10} className={classes.paper}>
         <Avatar variant="rounded" className={classes.avatar} src={logo} />
-        <Typography component="h1" variant="h5" color="primary">
+        <Typography className={classes.login} component="h1" variant="h5">
           Reset password
         </Typography>
         <form  className={classes.form}>
@@ -107,7 +118,7 @@ const ResetPassword = (props) => {
         </form>    
         
         
-    </div>}
+    </Paper>}
     {status === "loading" && <div className={classes.paper} style={{marginTop: "300px"}}><CircularProgress color="secondary" /></div>}
       
     </Container>

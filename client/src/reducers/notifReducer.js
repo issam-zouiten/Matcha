@@ -33,7 +33,14 @@ export default function (state = DEFAULT_STATE, action) {
             return { current_notif: '', notifications: arr };
         }
         case DEL_NOTIF_SUCCESS:
-            return { current_notif: '', notifications: action.notif };
+            let arr = [...state.notifications];
+            for (var i = 0; i < arr.length; i++) {
+                  if (arr[i].by.id === action.notif) {
+                    arr.splice(i, 1);
+                    i--;
+                  }
+                }
+            return { current_notif: '', notifications: arr };
         default:
             return state;
     }

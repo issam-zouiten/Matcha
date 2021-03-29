@@ -126,7 +126,7 @@ const Register = (props) => {
       <Grid style={{display: "flex", flex: "row"}}>
         <Grid item xs={false} sm={false} md={6} className={classes.gridPic}>
             {/* <Container maxWidth="xs" style={{backgroundColor:"green",    display: 'flex', alignItems: 'center', justifyContent: 'center',}}> */}
-              <img src={LoginImage} className={classes.logimg}></img>
+              <img alt="picregister" src={LoginImage} className={classes.logimg}></img>
             {/* </Container> */}
             
           </Grid>
@@ -144,6 +144,24 @@ const Register = (props) => {
         </Typography>
                   <form className={classes.form}>
                     <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Field
+                          name="firstname"
+                          component={renderField}
+                          label="firstname"
+                          type="text"
+                          rows='1'
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Field
+                          name="lastname"
+                          component={renderField}
+                          label="lastname"
+                          type="text"
+                          rows='1'
+                        />
+                      </Grid>
                       <Grid item xs={12}>
                         <Field
                           name="username"

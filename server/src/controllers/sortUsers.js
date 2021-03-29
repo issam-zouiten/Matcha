@@ -13,7 +13,7 @@ sortUsers = async (req, res) => {
     const indice = req.body.indice;
     const users = await user.getUsers(user_id);
     const user1 = await user.select('GetUserById',user_id);
-    if(route === '/browser')
+    if(route === '/Browser')
     {
         for (var i = 0; i < users.length; i++) {
             if(user1[0].Sexual_orientation === 'men')

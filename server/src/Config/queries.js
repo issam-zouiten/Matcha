@@ -1,6 +1,6 @@
 const queries = {
     SELECT: {
-        GetUsers:           "SELECT DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
+        GetUsers:"SELECT DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
         id,firstname, lastname, username, gender, Sexual_orientation, biography, age,date_birthday,rating,Online,latitude,longitude FROM users\
         WHERE id != ? AND \
         id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
@@ -49,7 +49,7 @@ const queries = {
                 WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
    },
     INSERT: {
-        AddUser: 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
+        AddUser: 'INSERT INTO users (firstname, lastname, username, email, password) VALUES (?, ?, ?, ?, ?)',
         InsertUserTag: "INSERT INTO useTags (id_user, id_tag) VALUES (?, ?)",
         CreateTag: "INSERT INTO tags (tag, create_tag) VALUES (?, ?)",
         blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
@@ -58,6 +58,7 @@ const queries = {
         insertNotif: "INSERT INTO notifications (`by`, receiver, content, seen) VALUES (?, ?, ?, ?)",
         insertMessage: "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
         reportUser: "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
+        viewProfileUser :   "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())",
 
     },
     UPDATE: {

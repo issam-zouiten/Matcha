@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -54,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   greenpaper: {
     padding: "20px",
+    width: "100%",
     [theme.breakpoints.down(425 + theme.spacing(3) * 2)]: {
       justifyContent: "center",
       height: "auto",
@@ -110,7 +110,8 @@ const useStyles = makeStyles((theme) => ({
   },
   pics: {
     height: "100%",
-    background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
+    width: "100%",
+    // background: "linear-gradient(30deg, #34ada4 10%, #0b777d 90%)",
     // display: "flex",
     // flexDirection: "wrap",
     // maxWidth: "600px",
@@ -133,7 +134,8 @@ const useStyles = makeStyles((theme) => ({
     ...theme.typography.username,
   },
   secondpaper: {
-    background: "linear-gradient(140deg, #34ada4 15%, #0b777d 90%)",
+    background: "linear-gradient(140deg, #34ada4 20%, #0b777d 80%)",
+    width : "100%",
     borderTopRightRadius: "10px",
     borderBottomRightRadius: "10px",
     borderTopLeftRadius: "0px",

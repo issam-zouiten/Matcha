@@ -51,14 +51,14 @@ Login = async (req, res) => {
                         res.send({ isValid: false, errorField: 'Please confirm your e-mail' });
                 }
                 else {
-                    res.send({ isValid: false, errorField: 'password no exist!' });
+                    res.send({ isValid: false, errorField: 'Wrong Password' });
 
                 }
             })
             .catch(err => console.log(err))
     }
     else
-        res.send({ isValid: false, errorField: "No user exists!" });
+        res.send({ isValid: false, errorField: "User Does not Exist" });
 
 }
 

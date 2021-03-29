@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 const EmailConfirmation = (props) => {
   const classes = useStyles();
   return (
-    <Container  elevation={10} component="main" maxWidth="xs" className={classes.backgroundColorc}>
+    <Container elevation={10} component="main" maxWidth="xs" className={classes.backgroundColorc}>
       <CssBaseline />
       {props.status !== 'loading' && <Paper elevation={10} className={classes.paper}>
       <Avatar variant="rounded" className={classes.avatar} src={img}></Avatar>

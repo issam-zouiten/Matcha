@@ -112,7 +112,7 @@ const Login = (props) => {
         <Grid style={{display: "flex", flex: "row"}}>
         <Grid item xs={false} sm={false} md={6} className={classes.gridPic}>
           {/* <Container maxWidth="xs" style={{backgroundColor:"green",    display: 'flex', alignItems: 'center', justifyContent: 'center',}}> */}
-            <img src={LoginImage} className={classes.logimg}></img>
+            <img alt="logimg" src={LoginImage} className={classes.logimg}></img>
           {/* </Container> */}
           
         </Grid>
